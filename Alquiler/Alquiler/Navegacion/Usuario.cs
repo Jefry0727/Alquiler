@@ -69,7 +69,7 @@ namespace Alquiler.Navegacion
 
             String o = cbTipoDocumento.SelectedItem.ToString();
             idTipoDoc = clsTP.obtenerIdTipoDoc(o);
-            MessageBox.Show("" + idTipoDoc);
+            
         }
 
 
