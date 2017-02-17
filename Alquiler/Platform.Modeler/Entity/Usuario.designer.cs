@@ -22,6 +22,7 @@ namespace Platform.Modeler.Entity
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="AlquilerVehiculos")]
 	public partial class UsuarioDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -29,7 +30,16 @@ namespace Platform.Modeler.Entity
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
+    partial void Insertusuario(usuario instance);
+    partial void Updateusuario(usuario instance);
+    partial void Deleteusuario(usuario instance);
     #endregion
+		
+		public UsuarioDataContext() : 
+				base(global::Platform.Modeler.Properties.Settings.Default.AlquilerVehiculosConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public UsuarioDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -53,6 +63,424 @@ namespace Platform.Modeler.Entity
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<usuario> usuario
+		{
+			get
+			{
+				return this.GetTable<usuario>();
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.buscarUsuarioPro")]
+		public ISingleResult<buscarUsuarioProResult> buscarUsuarioPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(12)")] string documento)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), documento);
+			return ((ISingleResult<buscarUsuarioProResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.eliminarUsuarioPro")]
+		public int eliminarUsuarioPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.guardarUsuarioPro")]
+		public int guardarUsuarioPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(11)")] string documento, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(45)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(45)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> edad, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_genero, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_tipoDocumento, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_ciudad)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), documento, nombre, apellido, edad, id_genero, id_tipoDocumento, id_ciudad);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.modificarUsuarioPro")]
+		public int modificarUsuarioPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(11)")] string documento, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(45)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(45)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> edad, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_genero, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_tipoDocumento, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_ciudad)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, documento, nombre, apellido, edad, id_genero, id_tipoDocumento, id_ciudad);
+			return ((int)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.usuario")]
+	public partial class usuario : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _documento;
+		
+		private string _nombre;
+		
+		private string _apellido;
+		
+		private int _edad;
+		
+		private int _genero_id;
+		
+		private int _tipo_documento_id;
+		
+		private int _ciudad_id;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OndocumentoChanging(string value);
+    partial void OndocumentoChanged();
+    partial void OnnombreChanging(string value);
+    partial void OnnombreChanged();
+    partial void OnapellidoChanging(string value);
+    partial void OnapellidoChanged();
+    partial void OnedadChanging(int value);
+    partial void OnedadChanged();
+    partial void Ongenero_idChanging(int value);
+    partial void Ongenero_idChanged();
+    partial void Ontipo_documento_idChanging(int value);
+    partial void Ontipo_documento_idChanged();
+    partial void Onciudad_idChanging(int value);
+    partial void Onciudad_idChanged();
+    #endregion
+		
+		public usuario()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_documento", DbType="NVarChar(11) NOT NULL", CanBeNull=false)]
+		public string documento
+		{
+			get
+			{
+				return this._documento;
+			}
+			set
+			{
+				if ((this._documento != value))
+				{
+					this.OndocumentoChanging(value);
+					this.SendPropertyChanging();
+					this._documento = value;
+					this.SendPropertyChanged("documento");
+					this.OndocumentoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(45) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this.OnnombreChanging(value);
+					this.SendPropertyChanging();
+					this._nombre = value;
+					this.SendPropertyChanged("nombre");
+					this.OnnombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_apellido", DbType="NVarChar(45) NOT NULL", CanBeNull=false)]
+		public string apellido
+		{
+			get
+			{
+				return this._apellido;
+			}
+			set
+			{
+				if ((this._apellido != value))
+				{
+					this.OnapellidoChanging(value);
+					this.SendPropertyChanging();
+					this._apellido = value;
+					this.SendPropertyChanged("apellido");
+					this.OnapellidoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_edad", DbType="Int NOT NULL")]
+		public int edad
+		{
+			get
+			{
+				return this._edad;
+			}
+			set
+			{
+				if ((this._edad != value))
+				{
+					this.OnedadChanging(value);
+					this.SendPropertyChanging();
+					this._edad = value;
+					this.SendPropertyChanged("edad");
+					this.OnedadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_genero_id", DbType="Int NOT NULL")]
+		public int genero_id
+		{
+			get
+			{
+				return this._genero_id;
+			}
+			set
+			{
+				if ((this._genero_id != value))
+				{
+					this.Ongenero_idChanging(value);
+					this.SendPropertyChanging();
+					this._genero_id = value;
+					this.SendPropertyChanged("genero_id");
+					this.Ongenero_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tipo_documento_id", DbType="Int NOT NULL")]
+		public int tipo_documento_id
+		{
+			get
+			{
+				return this._tipo_documento_id;
+			}
+			set
+			{
+				if ((this._tipo_documento_id != value))
+				{
+					this.Ontipo_documento_idChanging(value);
+					this.SendPropertyChanging();
+					this._tipo_documento_id = value;
+					this.SendPropertyChanged("tipo_documento_id");
+					this.Ontipo_documento_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ciudad_id", DbType="Int NOT NULL")]
+		public int ciudad_id
+		{
+			get
+			{
+				return this._ciudad_id;
+			}
+			set
+			{
+				if ((this._ciudad_id != value))
+				{
+					this.Onciudad_idChanging(value);
+					this.SendPropertyChanging();
+					this._ciudad_id = value;
+					this.SendPropertyChanged("ciudad_id");
+					this.Onciudad_idChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class buscarUsuarioProResult
+	{
+		
+		private int _id;
+		
+		private string _documento;
+		
+		private string _nombre;
+		
+		private string _apellido;
+		
+		private int _edad;
+		
+		private int _genero_id;
+		
+		private int _tipo_documento_id;
+		
+		private int _ciudad_id;
+		
+		public buscarUsuarioProResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_documento", DbType="NVarChar(11) NOT NULL", CanBeNull=false)]
+		public string documento
+		{
+			get
+			{
+				return this._documento;
+			}
+			set
+			{
+				if ((this._documento != value))
+				{
+					this._documento = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nombre", DbType="NVarChar(45) NOT NULL", CanBeNull=false)]
+		public string nombre
+		{
+			get
+			{
+				return this._nombre;
+			}
+			set
+			{
+				if ((this._nombre != value))
+				{
+					this._nombre = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_apellido", DbType="NVarChar(45) NOT NULL", CanBeNull=false)]
+		public string apellido
+		{
+			get
+			{
+				return this._apellido;
+			}
+			set
+			{
+				if ((this._apellido != value))
+				{
+					this._apellido = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_edad", DbType="Int NOT NULL")]
+		public int edad
+		{
+			get
+			{
+				return this._edad;
+			}
+			set
+			{
+				if ((this._edad != value))
+				{
+					this._edad = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_genero_id", DbType="Int NOT NULL")]
+		public int genero_id
+		{
+			get
+			{
+				return this._genero_id;
+			}
+			set
+			{
+				if ((this._genero_id != value))
+				{
+					this._genero_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tipo_documento_id", DbType="Int NOT NULL")]
+		public int tipo_documento_id
+		{
+			get
+			{
+				return this._tipo_documento_id;
+			}
+			set
+			{
+				if ((this._tipo_documento_id != value))
+				{
+					this._tipo_documento_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ciudad_id", DbType="Int NOT NULL")]
+		public int ciudad_id
+		{
+			get
+			{
+				return this._ciudad_id;
+			}
+			set
+			{
+				if ((this._ciudad_id != value))
+				{
+					this._ciudad_id = value;
+				}
+			}
 		}
 	}
 }

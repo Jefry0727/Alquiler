@@ -6,26 +6,24 @@ using System.Threading.Tasks;
 using Platform.Modeler.Entity;
 namespace Platform.Modeler.DAO
 {
-    public class ClsCiudad
+    public class ClsGenero
     {
+        GeneroDataContext db;
 
-        CiudadesDataContext db;
-
-        public ClsCiudad()
+        public ClsGenero()
         {
-            db = new CiudadesDataContext();
+            db = new GeneroDataContext();
         }
 
-
-        public LinkedList<String> buscarCiudades()
+        public LinkedList<String> buscarGeneros()
         {
 
             LinkedList<String> temp = new LinkedList<string>();
 
-            var consulta = from x in db.ciudad select x;
+            var consulta = from x in db.genero select x;
             consulta.First();
 
-            foreach (ciudad tp in consulta)
+            foreach (genero tp in consulta)
             {
                 temp.AddLast(tp.id.ToString());
                 temp.AddLast(tp.nombre);
@@ -35,10 +33,11 @@ namespace Platform.Modeler.DAO
 
         }
 
-        public int obtenerIdCiudad(String nombre)
+        public int obtenerIdGenero(String nombre)
         {
-            var consu = db.ciudad_nombre(nombre).Single();
+            var consu = db.genero_nombre(nombre).Single();
             return consu.id;
         }
+
     }
 }

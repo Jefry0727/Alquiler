@@ -1,1 +1,53 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AlquilerVehiculos" Class="UsuarioDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=EQUIPO-ASUS;Initial Catalog=AlquilerVehiculos;Integrated Security=True" SettingsObjectName="Platform.Modeler.Properties.Settings" SettingsPropertyName="AlquilerVehiculosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.usuario" Member="usuario">
+    <Type Name="usuario">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="documento" Type="System.String" DbType="NVarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NVarChar(45) NOT NULL" CanBeNull="false" />
+      <Column Name="apellido" Type="System.String" DbType="NVarChar(45) NOT NULL" CanBeNull="false" />
+      <Column Name="edad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="genero_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tipo_documento_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ciudad_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.buscarUsuarioPro" Method="buscarUsuarioPro">
+    <Parameter Name="documento" Type="System.String" DbType="NVarChar(12)" />
+    <ElementType Name="buscarUsuarioProResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="documento" Type="System.String" DbType="NVarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NVarChar(45) NOT NULL" CanBeNull="false" />
+      <Column Name="apellido" Type="System.String" DbType="NVarChar(45) NOT NULL" CanBeNull="false" />
+      <Column Name="edad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="genero_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tipo_documento_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ciudad_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.eliminarUsuarioPro" Method="eliminarUsuarioPro">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.guardarUsuarioPro" Method="guardarUsuarioPro">
+    <Parameter Name="documento" Type="System.String" DbType="NVarChar(11)" />
+    <Parameter Name="nombre" Type="System.String" DbType="NVarChar(45)" />
+    <Parameter Name="apellido" Type="System.String" DbType="NVarChar(45)" />
+    <Parameter Name="edad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_genero" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_tipoDocumento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_ciudad" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.modificarUsuarioPro" Method="modificarUsuarioPro">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="documento" Type="System.String" DbType="NVarChar(11)" />
+    <Parameter Name="nombre" Type="System.String" DbType="NVarChar(45)" />
+    <Parameter Name="apellido" Type="System.String" DbType="NVarChar(45)" />
+    <Parameter Name="edad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_genero" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_tipoDocumento" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_ciudad" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
