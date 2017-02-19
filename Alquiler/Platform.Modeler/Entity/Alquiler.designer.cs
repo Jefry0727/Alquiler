@@ -22,6 +22,7 @@ namespace Platform.Modeler.Entity
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="AlquilerVehiculos")]
 	public partial class AlquilerDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -29,7 +30,16 @@ namespace Platform.Modeler.Entity
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
+    partial void Insertalquiler(alquiler instance);
+    partial void Updatealquiler(alquiler instance);
+    partial void Deletealquiler(alquiler instance);
     #endregion
+		
+		public AlquilerDataContext() : 
+				base(global::Platform.Modeler.Properties.Settings.Default.AlquilerVehiculosConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public AlquilerDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -53,6 +63,172 @@ namespace Platform.Modeler.Entity
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<alquiler> alquiler
+		{
+			get
+			{
+				return this.GetTable<alquiler>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.alquiler")]
+	public partial class alquiler : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _codigo;
+		
+		private int _usuario_id;
+		
+		private int _vehiculo_id;
+		
+		private System.DateTime _fecha_alquiler;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OncodigoChanging(string value);
+    partial void OncodigoChanged();
+    partial void Onusuario_idChanging(int value);
+    partial void Onusuario_idChanged();
+    partial void Onvehiculo_idChanging(int value);
+    partial void Onvehiculo_idChanged();
+    partial void Onfecha_alquilerChanging(System.DateTime value);
+    partial void Onfecha_alquilerChanged();
+    #endregion
+		
+		public alquiler()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_codigo", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string codigo
+		{
+			get
+			{
+				return this._codigo;
+			}
+			set
+			{
+				if ((this._codigo != value))
+				{
+					this.OncodigoChanging(value);
+					this.SendPropertyChanging();
+					this._codigo = value;
+					this.SendPropertyChanged("codigo");
+					this.OncodigoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_usuario_id", DbType="Int NOT NULL")]
+		public int usuario_id
+		{
+			get
+			{
+				return this._usuario_id;
+			}
+			set
+			{
+				if ((this._usuario_id != value))
+				{
+					this.Onusuario_idChanging(value);
+					this.SendPropertyChanging();
+					this._usuario_id = value;
+					this.SendPropertyChanged("usuario_id");
+					this.Onusuario_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vehiculo_id", DbType="Int NOT NULL")]
+		public int vehiculo_id
+		{
+			get
+			{
+				return this._vehiculo_id;
+			}
+			set
+			{
+				if ((this._vehiculo_id != value))
+				{
+					this.Onvehiculo_idChanging(value);
+					this.SendPropertyChanging();
+					this._vehiculo_id = value;
+					this.SendPropertyChanged("vehiculo_id");
+					this.Onvehiculo_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fecha_alquiler", DbType="Date NOT NULL")]
+		public System.DateTime fecha_alquiler
+		{
+			get
+			{
+				return this._fecha_alquiler;
+			}
+			set
+			{
+				if ((this._fecha_alquiler != value))
+				{
+					this.Onfecha_alquilerChanging(value);
+					this.SendPropertyChanging();
+					this._fecha_alquiler = value;
+					this.SendPropertyChanged("fecha_alquiler");
+					this.Onfecha_alquilerChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

@@ -22,6 +22,7 @@ namespace Platform.Modeler.Entity
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="AlquilerVehiculos")]
 	public partial class VehiculoDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -29,7 +30,16 @@ namespace Platform.Modeler.Entity
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
+    partial void Insertvehiculo(vehiculo instance);
+    partial void Updatevehiculo(vehiculo instance);
+    partial void Deletevehiculo(vehiculo instance);
     #endregion
+		
+		public VehiculoDataContext() : 
+				base(global::Platform.Modeler.Properties.Settings.Default.AlquilerVehiculosConnectionString, mappingSource)
+		{
+			OnCreated();
+		}
 		
 		public VehiculoDataContext(string connection) : 
 				base(connection, mappingSource)
@@ -53,6 +63,463 @@ namespace Platform.Modeler.Entity
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<vehiculo> vehiculo
+		{
+			get
+			{
+				return this.GetTable<vehiculo>();
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.vehiculos")]
+		public ISingleResult<vehiculosResult> vehiculos()
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+			return ((ISingleResult<vehiculosResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.guardarVehiculoPro")]
+		public int guardarVehiculoPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string placa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> numero_puestos, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string color, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> valor_dia, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_marca)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), placa, numero_puestos, color, valor_dia, id_marca);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.buscarVehiculo")]
+		public ISingleResult<buscarVehiculoResult> buscarVehiculo([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string placa)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), placa);
+			return ((ISingleResult<buscarVehiculoResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.eliminarVehiculoPro")]
+		public int eliminarVehiculoPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.modificarVehiculoPro")]
+		public int modificarVehiculoPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(10)")] string placa, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> numero_puestos, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string color, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> valor_dia, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_marca)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, placa, numero_puestos, color, valor_dia, id_marca);
+			return ((int)(result.ReturnValue));
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vehiculo")]
+	public partial class vehiculo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _placa;
+		
+		private int _numero_puestos;
+		
+		private string _color;
+		
+		private int _valor_dia;
+		
+		private int _marca_id;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnplacaChanging(string value);
+    partial void OnplacaChanged();
+    partial void Onnumero_puestosChanging(int value);
+    partial void Onnumero_puestosChanged();
+    partial void OncolorChanging(string value);
+    partial void OncolorChanged();
+    partial void Onvalor_diaChanging(int value);
+    partial void Onvalor_diaChanged();
+    partial void Onmarca_idChanging(int value);
+    partial void Onmarca_idChanged();
+    #endregion
+		
+		public vehiculo()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_placa", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string placa
+		{
+			get
+			{
+				return this._placa;
+			}
+			set
+			{
+				if ((this._placa != value))
+				{
+					this.OnplacaChanging(value);
+					this.SendPropertyChanging();
+					this._placa = value;
+					this.SendPropertyChanged("placa");
+					this.OnplacaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero_puestos", DbType="Int NOT NULL")]
+		public int numero_puestos
+		{
+			get
+			{
+				return this._numero_puestos;
+			}
+			set
+			{
+				if ((this._numero_puestos != value))
+				{
+					this.Onnumero_puestosChanging(value);
+					this.SendPropertyChanging();
+					this._numero_puestos = value;
+					this.SendPropertyChanged("numero_puestos");
+					this.Onnumero_puestosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_color", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string color
+		{
+			get
+			{
+				return this._color;
+			}
+			set
+			{
+				if ((this._color != value))
+				{
+					this.OncolorChanging(value);
+					this.SendPropertyChanging();
+					this._color = value;
+					this.SendPropertyChanged("color");
+					this.OncolorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_valor_dia", DbType="Int NOT NULL")]
+		public int valor_dia
+		{
+			get
+			{
+				return this._valor_dia;
+			}
+			set
+			{
+				if ((this._valor_dia != value))
+				{
+					this.Onvalor_diaChanging(value);
+					this.SendPropertyChanging();
+					this._valor_dia = value;
+					this.SendPropertyChanged("valor_dia");
+					this.Onvalor_diaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_marca_id", DbType="Int NOT NULL")]
+		public int marca_id
+		{
+			get
+			{
+				return this._marca_id;
+			}
+			set
+			{
+				if ((this._marca_id != value))
+				{
+					this.Onmarca_idChanging(value);
+					this.SendPropertyChanging();
+					this._marca_id = value;
+					this.SendPropertyChanged("marca_id");
+					this.Onmarca_idChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class vehiculosResult
+	{
+		
+		private int _id;
+		
+		private string _placa;
+		
+		private int _numero_puestos;
+		
+		private string _color;
+		
+		private int _valor_dia;
+		
+		private int _marca_id;
+		
+		public vehiculosResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_placa", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string placa
+		{
+			get
+			{
+				return this._placa;
+			}
+			set
+			{
+				if ((this._placa != value))
+				{
+					this._placa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero_puestos", DbType="Int NOT NULL")]
+		public int numero_puestos
+		{
+			get
+			{
+				return this._numero_puestos;
+			}
+			set
+			{
+				if ((this._numero_puestos != value))
+				{
+					this._numero_puestos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_color", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string color
+		{
+			get
+			{
+				return this._color;
+			}
+			set
+			{
+				if ((this._color != value))
+				{
+					this._color = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_valor_dia", DbType="Int NOT NULL")]
+		public int valor_dia
+		{
+			get
+			{
+				return this._valor_dia;
+			}
+			set
+			{
+				if ((this._valor_dia != value))
+				{
+					this._valor_dia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_marca_id", DbType="Int NOT NULL")]
+		public int marca_id
+		{
+			get
+			{
+				return this._marca_id;
+			}
+			set
+			{
+				if ((this._marca_id != value))
+				{
+					this._marca_id = value;
+				}
+			}
+		}
+	}
+	
+	public partial class buscarVehiculoResult
+	{
+		
+		private int _id;
+		
+		private string _placa;
+		
+		private int _numero_puestos;
+		
+		private string _color;
+		
+		private int _valor_dia;
+		
+		private int _marca_id;
+		
+		public buscarVehiculoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_placa", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string placa
+		{
+			get
+			{
+				return this._placa;
+			}
+			set
+			{
+				if ((this._placa != value))
+				{
+					this._placa = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero_puestos", DbType="Int NOT NULL")]
+		public int numero_puestos
+		{
+			get
+			{
+				return this._numero_puestos;
+			}
+			set
+			{
+				if ((this._numero_puestos != value))
+				{
+					this._numero_puestos = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_color", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string color
+		{
+			get
+			{
+				return this._color;
+			}
+			set
+			{
+				if ((this._color != value))
+				{
+					this._color = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_valor_dia", DbType="Int NOT NULL")]
+		public int valor_dia
+		{
+			get
+			{
+				return this._valor_dia;
+			}
+			set
+			{
+				if ((this._valor_dia != value))
+				{
+					this._valor_dia = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_marca_id", DbType="Int NOT NULL")]
+		public int marca_id
+		{
+			get
+			{
+				return this._marca_id;
+			}
+			set
+			{
+				if ((this._marca_id != value))
+				{
+					this._marca_id = value;
+				}
+			}
 		}
 	}
 }

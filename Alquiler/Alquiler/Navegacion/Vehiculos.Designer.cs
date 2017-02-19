@@ -35,7 +35,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtPlaca = new System.Windows.Forms.TextBox();
             this.txtPuestos = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtColor = new System.Windows.Forms.TextBox();
             this.txtValorDia = new System.Windows.Forms.TextBox();
             this.cbMarca = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
@@ -106,12 +106,12 @@
             this.txtPuestos.Size = new System.Drawing.Size(131, 20);
             this.txtPuestos.TabIndex = 6;
             // 
-            // textBox1
+            // txtColor
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 112);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(131, 20);
-            this.textBox1.TabIndex = 7;
+            this.txtColor.Location = new System.Drawing.Point(127, 112);
+            this.txtColor.Name = "txtColor";
+            this.txtColor.Size = new System.Drawing.Size(131, 20);
+            this.txtColor.TabIndex = 7;
             // 
             // txtValorDia
             // 
@@ -137,6 +137,7 @@
             this.btnGuardar.TabIndex = 10;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnBuscar
             // 
@@ -146,6 +147,7 @@
             this.btnBuscar.TabIndex = 11;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnModificar
             // 
@@ -155,6 +157,7 @@
             this.btnModificar.TabIndex = 12;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -164,6 +167,7 @@
             this.btnEliminar.TabIndex = 13;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // dataGridView1
             // 
@@ -196,7 +200,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cbMarca);
             this.Controls.Add(this.txtValorDia);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtColor);
             this.Controls.Add(this.txtPuestos);
             this.Controls.Add(this.txtPlaca);
             this.Controls.Add(this.label5);
@@ -222,7 +226,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPlaca;
         private System.Windows.Forms.TextBox txtPuestos;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtColor;
         private System.Windows.Forms.TextBox txtValorDia;
         private System.Windows.Forms.ComboBox cbMarca;
         private System.Windows.Forms.Button btnGuardar;

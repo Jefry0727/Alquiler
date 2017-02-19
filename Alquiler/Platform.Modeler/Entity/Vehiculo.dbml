@@ -1,1 +1,55 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AlquilerVehiculos" Class="VehiculoDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MARCELA-PC;Initial Catalog=AlquilerVehiculos;Integrated Security=True" SettingsObjectName="Platform.Modeler.Properties.Settings" SettingsPropertyName="AlquilerVehiculosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.vehiculo" Member="vehiculo">
+    <Type Name="vehiculo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="placa" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="numero_puestos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="color" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="valor_dia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="marca_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.vehiculos" Method="vehiculos">
+    <ElementType Name="vehiculosResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="placa" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="numero_puestos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="color" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="valor_dia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="marca_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.guardarVehiculoPro" Method="guardarVehiculoPro">
+    <Parameter Name="placa" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="numero_puestos" Type="System.Int32" DbType="Int" />
+    <Parameter Name="color" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="valor_dia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_marca" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.buscarVehiculo" Method="buscarVehiculo">
+    <Parameter Name="placa" Type="System.String" DbType="NVarChar(10)" />
+    <ElementType Name="buscarVehiculoResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="placa" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="numero_puestos" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="color" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="valor_dia" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="marca_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.eliminarVehiculoPro" Method="eliminarVehiculoPro">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.modificarVehiculoPro" Method="modificarVehiculoPro">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="placa" Type="System.String" DbType="NVarChar(10)" />
+    <Parameter Name="numero_puestos" Type="System.Int32" DbType="Int" />
+    <Parameter Name="color" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="valor_dia" Type="System.Int32" DbType="Int" />
+    <Parameter Name="id_marca" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

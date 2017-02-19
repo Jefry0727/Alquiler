@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="DAO\ClsCiudad.cs" />
     <Compile Include="DAO\ClsGenero.cs" />
+    <Compile Include="DAO\ClsMarca.cs" />
     <Compile Include="DAO\ClsTipoDocumento.cs" />
     <Compile Include="DAO\ClsUsuario.cs" />
+    <Compile Include="DAO\ClsVehiculo.cs" />
     <Compile Include="Entity\Alquiler.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -58,6 +60,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Genero.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Marca.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Marca.dbml</DependentUpon>
     </Compile>
     <Compile Include="Entity\TipoDocumento.designer.cs">
       <AutoGen>True</AutoGen>
@@ -96,6 +103,11 @@
     <None Include="Entity\Genero.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Genero.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Entity\Marca.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Marca.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Entity\TipoDocumento.dbml">
@@ -149,6 +161,11 @@
   <ItemGroup>
     <None Include="Entity\Genero.dbml.layout">
       <DependentUpon>Genero.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entity\Marca.dbml.layout">
+      <DependentUpon>Marca.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

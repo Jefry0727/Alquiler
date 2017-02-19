@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AlquilerVehiculos" Class="MarcaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MARCELA-PC;Initial Catalog=AlquilerVehiculos;Integrated Security=True" SettingsObjectName="Platform.Modeler.Properties.Settings" SettingsPropertyName="AlquilerVehiculosConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.marca" Member="marca">
+    <Type Name="marca">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.marcas" Method="marcas">
+    <ElementType Name="marcasResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.marca_nombre" Method="marca_nombre">
+    <Parameter Name="nombre" Type="System.String" DbType="NVarChar(30)" />
+    <ElementType Name="marca_nombreResult">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nombre" Type="System.String" DbType="NVarChar(40) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>

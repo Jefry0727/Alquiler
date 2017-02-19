@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="Navegacion\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Item.cs" />
     <EmbeddedResource Include="Navegacion\Alquiler.resx">
       <DependentUpon>Alquiler.cs</DependentUpon>
     </EmbeddedResource>
