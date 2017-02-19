@@ -72,6 +72,27 @@ namespace Platform.Modeler.Entity
 				return this.GetTable<alquiler>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.buscarAlquilerPro")]
+		public ISingleResult<alquiler> buscarAlquilerPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string codigo)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigo);
+			return ((ISingleResult<alquiler>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.guardarAlquilerPro")]
+		public int guardarAlquilerPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string codigo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_vehiculo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string fecha_alquiler)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), codigo, id_usuario, id_vehiculo, fecha_alquiler);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.modificarAlquilerPro")]
+		public int modificarAlquilerPro([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string codigo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id_vehiculo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="NVarChar(30)")] string fecha_alquiler)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, codigo, id_usuario, id_vehiculo, fecha_alquiler);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.alquiler")]

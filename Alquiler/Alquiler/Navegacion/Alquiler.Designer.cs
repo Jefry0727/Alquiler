@@ -85,7 +85,7 @@
             // 
             this.txtCodigo.Location = new System.Drawing.Point(108, 25);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(126, 20);
+            this.txtCodigo.Size = new System.Drawing.Size(145, 20);
             this.txtCodigo.TabIndex = 4;
             // 
             // cbUsuario
@@ -93,7 +93,7 @@
             this.cbUsuario.FormattingEnabled = true;
             this.cbUsuario.Location = new System.Drawing.Point(107, 55);
             this.cbUsuario.Name = "cbUsuario";
-            this.cbUsuario.Size = new System.Drawing.Size(122, 21);
+            this.cbUsuario.Size = new System.Drawing.Size(164, 21);
             this.cbUsuario.TabIndex = 5;
             // 
             // cbVehiculo
@@ -101,14 +101,15 @@
             this.cbVehiculo.FormattingEnabled = true;
             this.cbVehiculo.Location = new System.Drawing.Point(108, 90);
             this.cbVehiculo.Name = "cbVehiculo";
-            this.cbVehiculo.Size = new System.Drawing.Size(121, 21);
+            this.cbVehiculo.Size = new System.Drawing.Size(163, 21);
             this.cbVehiculo.TabIndex = 6;
             // 
             // dtpFecha
             // 
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFecha.Location = new System.Drawing.Point(108, 118);
             this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(200, 20);
+            this.dtpFecha.Size = new System.Drawing.Size(163, 20);
             this.dtpFecha.TabIndex = 7;
             // 
             // btnGuardar
@@ -119,6 +120,7 @@
             this.btnGuardar.TabIndex = 8;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnBuscar
             // 
@@ -128,6 +130,7 @@
             this.btnBuscar.TabIndex = 9;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnModificar
             // 

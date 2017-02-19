@@ -49,5 +49,26 @@ namespace Platform.Modeler.DAO
             
         }
 
+        public LinkedList<usuario> listarUsuarios (){
+
+            LinkedList<usuario> temp = new LinkedList<usuario>();
+
+           var consulta = from x in db.usuario select x;
+           consulta.First();
+
+           foreach (usuario tp in consulta)
+           {
+
+               temp.AddLast(tp);
+            
+           }
+
+           return temp;
+
+       }
+
+
+        }
+
     }
-}
+

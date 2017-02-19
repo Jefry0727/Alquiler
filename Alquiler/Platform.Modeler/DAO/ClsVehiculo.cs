@@ -79,6 +79,24 @@ namespace Platform.Modeler.DAO
 
         }
 
+        public LinkedList<vehiculo> listarVehiculo()
+        {
+
+            LinkedList<vehiculo> temp = new LinkedList<vehiculo>();
+
+            var consulta = from x in db.vehiculo select x;
+            consulta.First();
+
+            foreach (vehiculo tp in consulta)
+            {
+
+                temp.AddLast(tp);
+
+            }
+
+            return temp;
+        }
+
         public bool eliminarPro(int id)
         {
             try

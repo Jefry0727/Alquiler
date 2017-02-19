@@ -29,7 +29,6 @@ namespace Alquiler.Navegacion
             clsMarc = new ClsMarca();
             clsVehi = new ClsVehiculo();
             marca = new LinkedList<marca>();
-            marca = clsMarc.buscarMarca();
             llenarComboMarca();
         }
 
@@ -47,20 +46,21 @@ namespace Alquiler.Navegacion
         {
 
             LinkedList<marca> lista = clsMarc.buscarMarca();
-            BindingList<Item> deptos = new BindingList<Item>();
-            deptos.Add(new Item("Seleccione un marca",0));
+            BindingList<Item> vehi = new BindingList<Item>();
+            vehi.Add(new Item("Seleccione un marca",0));
 
             for (int i = 0; i < lista.Count; i++)
             {
-                deptos.Add(new Item((lista.ElementAt(i)).nombre, (lista.ElementAt(i)).id));
+                vehi.Add(new Item((lista.ElementAt(i)).nombre, (lista.ElementAt(i)).id));
 
             }
 
             cbMarca.DisplayMember = "Name";
             cbMarca.ValueMember = "Value";
-            cbMarca.DataSource = deptos;
+            cbMarca.DataSource = vehi;
           
         }
+
 
         private void btnVolver_Click(object sender, EventArgs e)
         {

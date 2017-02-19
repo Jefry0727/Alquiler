@@ -23,6 +23,7 @@ namespace Platform.Modeler.DAO
 
            LinkedList<marca> temp = new LinkedList<marca>();
 
+          
            var consulta = from x in db.marca select x;
            consulta.First();
 
