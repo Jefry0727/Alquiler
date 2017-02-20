@@ -116,5 +116,91 @@ namespace Platform.Modeler.DAO
 
         }
 
+        public bool guardarNormal(String placa, int numPuestos,String color,int valorDia, int idMarca)
+        {
+            try
+            {
+                vehiculo v = new vehiculo();
+                v.placa = placa;
+                v.numero_puestos = numPuestos;
+                v.color = color;
+                v.valor_dia = valorDia;
+                v.marca_id = idMarca;
+                db.vehiculo.InsertOnSubmit(v);//ingresa el objeto temporal estu
+                db.SubmitChanges();//se hace submit
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public LinkedList<String> buscarNormal(String placa)
+        {
+            LinkedList<String> temp = new LinkedList<string>();
+            var consulta = from x in db.vehiculo where x.placa == placa select x;
+            consulta.First();
+
+            foreach (vehiculo estu in consulta)
+            {
+                temp.AddLast(estu.id.ToString());
+                temp.AddLast(estu.placa);
+                temp.AddLast(estu.numero_puestos.ToString());
+                temp.AddLast(estu.color);
+                temp.AddLast(estu.marca_id.ToString());
+                temp.AddLast(estu.valor_dia.ToString());
+                
+            }
+
+            return temp;
+
+        }
+
+        public bool modificarNormal(int id, String placa, int numPuestos, String color, int valorDia, int idMarca)
+        {
+            try
+            {
+                var consulta = from x in db.vehiculo where x.id == id select x;
+                consulta.First();
+
+                foreach (vehiculo est in consulta)
+                {
+                    est.placa = placa;
+                    est.numero_puestos=numPuestos;
+                    est.color=color;
+                    est.valor_dia=valorDia;
+                    est.marca_id=idMarca;
+                }
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool eliminarNormal(int id)
+        {
+            try
+            {
+                var consulta = from x in db.vehiculo where x.id == id select x;
+
+                foreach (vehiculo est in consulta)
+                {
+                    db.vehiculo.DeleteOnSubmit(est);
+                }
+
+                db.SubmitChanges();
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
     }
 }

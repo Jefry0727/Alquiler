@@ -230,9 +230,8 @@ namespace Alquiler.Navegacion
             }
             else
             {
-                bool res = clsVehi.eliminarPro(aux);
 
-                if (res)
+                if (clsVehi.eliminarPro(aux))
                 {
 
                     limpiarCampos();
@@ -249,6 +248,157 @@ namespace Alquiler.Navegacion
 
           
 
+        }
+
+        private void btnGuardarNormal_Click(object sender, EventArgs e)
+        {
+            String placa = txtPlaca.Text;
+
+            int puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
+
+            int valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
+
+            String color = txtColor.Text;
+
+            Int32 idMarca = (Int32)cbMarca.SelectedValue;
+
+            if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
+            {
+                MessageBox.Show("Complete la informacion por favor.");
+            }
+            else
+            {
+
+                bool res = clsVehi.guardarNormal(placa, puestos,color, valor, idMarca);
+
+                if (res)
+                {
+
+                    limpiarCampos();
+                    MessageBox.Show("Exito al guardar");
+
+                }
+                else
+                {
+
+                    MessageBox.Show("El Vehiculo de placas no se pudo guardar");
+
+                }
+
+            }
+
+        }
+
+        private void btnBuscarNormal_Click(object sender, EventArgs e)
+        {
+            String placa = txtPlaca.Text;
+
+            if (placa == "")
+            {
+
+                MessageBox.Show("Por favor ingresa el número de placa del Vehículo a buscar");
+
+            }
+            else
+            {
+
+                LinkedList<String> temp = new LinkedList<string>();
+
+                temp = clsVehi.buscarNormal(placa);
+
+                if (temp == null)
+                {
+
+                    MessageBox.Show("El vehículo de placas: " + placa + " no existe");
+
+                }
+                else
+                {
+
+                    aux = Convert.ToInt32(temp.ElementAt(0));
+
+                    txtPlaca.Text = temp.ElementAt(1);                    
+
+                    txtPuestos.Text = temp.ElementAt(2);
+
+                    txtColor.Text = temp.ElementAt(3);
+
+                    cbMarca.SelectedValue = Convert.ToInt32(temp.ElementAt(4));
+
+                    txtValorDia.Text = temp.ElementAt(5);                   
+
+                    btnGuardar.Enabled = false;
+
+                }
+
+
+            }
+        }
+
+        private void btnModificarNormal_Click(object sender, EventArgs e)
+        {
+            String placa = txtPlaca.Text;
+
+            int puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
+
+            int valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
+
+            String color = txtColor.Text;
+
+            Int32 idMarca = (Int32)cbMarca.SelectedValue;
+
+            if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
+            {
+                MessageBox.Show("Complete la informacion por favor.");
+            }
+            else
+            {
+
+                bool res = clsVehi.modificarNormal(aux, placa, puestos,color, valor, idMarca);
+
+                if (res)
+                {
+
+                    limpiarCampos();
+                    MessageBox.Show("El vehículo se modifico correctamente");
+
+                }
+                else
+                {
+
+                    MessageBox.Show("El vehículo NO se modifico correctamente");
+
+                }
+
+            }
+        }
+
+        private void btnEliminarNormal_Click(object sender, EventArgs e)
+        {
+
+            if (aux == 0)
+            {
+
+                MessageBox.Show("Por favor ingresa el número de placa del Vehículo a Eliminar");
+
+            }
+            else
+            {                
+
+                if (clsVehi.eliminarNormal(aux))
+                {
+
+                    limpiarCampos();
+
+                    MessageBox.Show("El Vehículo se elimino correctamente");
+
+                }
+                else
+                {
+
+                    MessageBox.Show("Ocurrio un error al eliminar el vehículo");
+                }
+            }
         }
 
     }

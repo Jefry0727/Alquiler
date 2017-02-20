@@ -44,6 +44,10 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.btnGuardarNormal = new System.Windows.Forms.Button();
+            this.btnBuscarNormal = new System.Windows.Forms.Button();
+            this.btnModificarNormal = new System.Windows.Forms.Button();
+            this.btnEliminarNormal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,14 +176,14 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(39, 203);
+            this.dataGridView1.Location = new System.Drawing.Point(39, 236);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(456, 150);
             this.dataGridView1.TabIndex = 14;
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(114, 159);
+            this.btnVolver.Location = new System.Drawing.Point(474, 174);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(75, 23);
             this.btnVolver.TabIndex = 15;
@@ -187,11 +191,55 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // btnGuardarNormal
+            // 
+            this.btnGuardarNormal.Location = new System.Drawing.Point(25, 150);
+            this.btnGuardarNormal.Name = "btnGuardarNormal";
+            this.btnGuardarNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarNormal.TabIndex = 16;
+            this.btnGuardarNormal.Text = "Guar-Nor";
+            this.btnGuardarNormal.UseVisualStyleBackColor = true;
+            this.btnGuardarNormal.Click += new System.EventHandler(this.btnGuardarNormal_Click);
+            // 
+            // btnBuscarNormal
+            // 
+            this.btnBuscarNormal.Location = new System.Drawing.Point(127, 150);
+            this.btnBuscarNormal.Name = "btnBuscarNormal";
+            this.btnBuscarNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarNormal.TabIndex = 17;
+            this.btnBuscarNormal.Text = "Busc-Norm";
+            this.btnBuscarNormal.UseVisualStyleBackColor = true;
+            this.btnBuscarNormal.Click += new System.EventHandler(this.btnBuscarNormal_Click);
+            // 
+            // btnModificarNormal
+            // 
+            this.btnModificarNormal.Location = new System.Drawing.Point(25, 190);
+            this.btnModificarNormal.Name = "btnModificarNormal";
+            this.btnModificarNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarNormal.TabIndex = 18;
+            this.btnModificarNormal.Text = "Mod-Norm";
+            this.btnModificarNormal.UseVisualStyleBackColor = true;
+            this.btnModificarNormal.Click += new System.EventHandler(this.btnModificarNormal_Click);
+            // 
+            // btnEliminarNormal
+            // 
+            this.btnEliminarNormal.Location = new System.Drawing.Point(127, 190);
+            this.btnEliminarNormal.Name = "btnEliminarNormal";
+            this.btnEliminarNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarNormal.TabIndex = 19;
+            this.btnEliminarNormal.Text = "Elimi-nom";
+            this.btnEliminarNormal.UseVisualStyleBackColor = true;
+            this.btnEliminarNormal.Click += new System.EventHandler(this.btnEliminarNormal_Click);
+            // 
             // Vehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 398);
+            this.Controls.Add(this.btnEliminarNormal);
+            this.Controls.Add(this.btnModificarNormal);
+            this.Controls.Add(this.btnBuscarNormal);
+            this.Controls.Add(this.btnGuardarNormal);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnEliminar);
@@ -235,5 +283,9 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button btnGuardarNormal;
+        private System.Windows.Forms.Button btnBuscarNormal;
+        private System.Windows.Forms.Button btnModificarNormal;
+        private System.Windows.Forms.Button btnEliminarNormal;
     }
 }

@@ -240,5 +240,142 @@ namespace Alquiler.Navegacion
             cbVehiculo.SelectedValue = 0;
 
         }
+
+        private void btnGuardarNormal_Click(object sender, EventArgs e)
+        {
+            String codigo = txtCodigo.Text;
+
+            Int32 idUsuario = (Int32)cbUsuario.SelectedValue;
+
+            Int32 idVehiculo = (Int32)cbVehiculo.SelectedValue;
+
+            String fecha = dtpFecha.Value.ToString("yyyy-MM-dd");
+
+            if (codigo == "" || idUsuario == 0 || idVehiculo == 0)
+            {
+
+                MessageBox.Show("Complete la informacion por favor.");
+
+            }
+            else
+            {
+
+                bool res = clsAlqui.guardarNormal(codigo, idUsuario, idVehiculo, fecha);
+
+                if (res)
+                {
+                    limpiarCampos();
+                    MessageBox.Show("El alquiler se realizo correctamente");
+                }
+                else
+                {
+
+                    MessageBox.Show("El alquiler NO se realizo correctamente");
+
+                }
+
+            }
+        }
+
+        private void btnBuscarNormal_Click(object sender, EventArgs e)
+        {
+            String codigo = txtCodigo.Text;
+
+            if (codigo == "")
+            {
+
+                MessageBox.Show("Por favor ingresa el número de codigo del alquiler a buscar");
+
+            }
+            else
+            {
+
+                LinkedList<String> temp = new LinkedList<String>();
+
+                temp = clsAlqui.buscarNormal(codigo);
+
+                aux = Convert.ToInt32(temp.ElementAt(0));
+
+                txtCodigo.Text = temp.ElementAt(1);
+
+                cbUsuario.SelectedValue = Convert.ToInt32(temp.ElementAt(2));
+
+                cbVehiculo.SelectedValue = Convert.ToInt32(temp.ElementAt(3));
+
+                dtpFecha.Text = temp.ElementAt(4);
+
+                btnGuardar.Enabled = false;
+
+            }
+        }
+
+        private void btnModificarNormal_Click(object sender, EventArgs e)
+        {
+            String codigo = txtCodigo.Text;
+
+            Int32 idUsuario = (Int32)cbUsuario.SelectedValue;
+
+            Int32 idVehiculo = (Int32)cbVehiculo.SelectedValue;
+
+            String fecha = dtpFecha.Value.ToString("yyyy-MM-dd");
+
+            if (codigo == "" || idUsuario == 0 || idVehiculo == 0)
+            {
+
+                MessageBox.Show("Complete la informacion por favor.");
+
+            }
+            else
+            {
+
+                bool res = clsAlqui.modificarNormal(aux, codigo, idUsuario, idVehiculo, fecha);
+
+                if (res)
+                {
+                    limpiarCampos();
+                    MessageBox.Show("El alquiler se modifico correctamente");
+                }
+                else
+                {
+
+                    MessageBox.Show("El alquiler NO se modifico correctamente");
+
+                }
+
+            }
+        }
+
+        private void btnEliminarNormal_Click(object sender, EventArgs e)
+        {
+            if (aux == 0)
+            {
+
+                MessageBox.Show("Por favor ingresa el número de codigo del Alquiler a Eliminar");
+
+            }
+            else
+            {
+
+                if (clsAlqui.eliminarNormal(aux))
+                {
+
+                    limpiarCampos();
+
+                    MessageBox.Show("El Alquiler se elimino correctamente");
+
+                }
+                else
+                {
+
+                    MessageBox.Show("Ocurrio un error al eliminar el Alquiler");
+                }
+            }
+
+        }
+
+        private void Alquiler_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

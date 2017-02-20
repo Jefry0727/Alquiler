@@ -50,6 +50,10 @@
             this.alquilerVehiculosDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnVolver = new System.Windows.Forms.Button();
             this.usuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnGuardarNormal = new System.Windows.Forms.Button();
+            this.btnBuscarNormal = new System.Windows.Forms.Button();
+            this.btnModificarNormal = new System.Windows.Forms.Button();
+            this.btnEliminarNormal = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.alquilerVehiculosDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -198,6 +202,7 @@
             this.btnModificar.TabIndex = 16;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -207,6 +212,7 @@
             this.btnEliminar.TabIndex = 17;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnVolver
             // 
@@ -218,11 +224,55 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // btnGuardarNormal
+            // 
+            this.btnGuardarNormal.Location = new System.Drawing.Point(12, 146);
+            this.btnGuardarNormal.Name = "btnGuardarNormal";
+            this.btnGuardarNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarNormal.TabIndex = 20;
+            this.btnGuardarNormal.Text = "Guar-Nor";
+            this.btnGuardarNormal.UseVisualStyleBackColor = true;
+            this.btnGuardarNormal.Click += new System.EventHandler(this.btnGuardarNormal_Click);
+            // 
+            // btnBuscarNormal
+            // 
+            this.btnBuscarNormal.Location = new System.Drawing.Point(108, 146);
+            this.btnBuscarNormal.Name = "btnBuscarNormal";
+            this.btnBuscarNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarNormal.TabIndex = 21;
+            this.btnBuscarNormal.Text = "Busc-Nor";
+            this.btnBuscarNormal.UseVisualStyleBackColor = true;
+            this.btnBuscarNormal.Click += new System.EventHandler(this.btnBuscarNormal_Click);
+            // 
+            // btnModificarNormal
+            // 
+            this.btnModificarNormal.Location = new System.Drawing.Point(12, 176);
+            this.btnModificarNormal.Name = "btnModificarNormal";
+            this.btnModificarNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnModificarNormal.TabIndex = 22;
+            this.btnModificarNormal.Text = "Mod-Nor";
+            this.btnModificarNormal.UseVisualStyleBackColor = true;
+            this.btnModificarNormal.Click += new System.EventHandler(this.btnModificarNormal_Click);
+            // 
+            // btnEliminarNormal
+            // 
+            this.btnEliminarNormal.Location = new System.Drawing.Point(108, 175);
+            this.btnEliminarNormal.Name = "btnEliminarNormal";
+            this.btnEliminarNormal.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminarNormal.TabIndex = 23;
+            this.btnEliminarNormal.Text = "Elim-Nor";
+            this.btnEliminarNormal.UseVisualStyleBackColor = true;
+            this.btnEliminarNormal.Click += new System.EventHandler(this.btnEliminarNormal_Click);
+            // 
             // Usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(615, 211);
+            this.Controls.Add(this.btnEliminarNormal);
+            this.Controls.Add(this.btnModificarNormal);
+            this.Controls.Add(this.btnBuscarNormal);
+            this.Controls.Add(this.btnGuardarNormal);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
@@ -277,5 +327,9 @@
         private System.Windows.Forms.BindingSource usuarioBindingSource;
         private AlquilerVehiculosDataSetTableAdapters.usuarioTableAdapter usuarioTableAdapter;
         private System.Windows.Forms.BindingSource alquilerVehiculosDataSetBindingSource;
+        private System.Windows.Forms.Button btnGuardarNormal;
+        private System.Windows.Forms.Button btnBuscarNormal;
+        private System.Windows.Forms.Button btnModificarNormal;
+        private System.Windows.Forms.Button btnEliminarNormal;
     }
 }
