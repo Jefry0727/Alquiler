@@ -202,6 +202,30 @@ namespace Alquiler.Navegacion
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
+            if (aux == 0)
+            {
+
+                MessageBox.Show("Por favor ingresa el número de codigo del Alquiler a Eliminar");
+
+            }
+            else
+            {
+                bool res = clsAlqui.eliminarPro(aux);
+
+                if (res)
+                {
+
+                    limpiarCampos();
+
+                    MessageBox.Show("El Alquiler se elimino correctamente");
+
+                }
+                else
+                {
+
+                    MessageBox.Show("Ocurrio un error al eliminar el Alquiler");
+                }
+            }
 
 
         }

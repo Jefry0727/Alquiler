@@ -56,6 +56,25 @@ namespace Platform.Modeler.DAO
 
         }
 
+        public bool eliminarPro(int id)
+        {
+            try
+            {
+
+                db.eliminaraAlquilerPro(id);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+
+                return false;
+
+            }
+
+
+        }
+
       
     }
 }

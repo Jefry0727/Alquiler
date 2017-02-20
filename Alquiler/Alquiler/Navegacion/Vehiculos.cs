@@ -225,23 +225,29 @@ namespace Alquiler.Navegacion
 
             if(aux == 0){
 
-
-            }
-
-           bool res = clsVehi.eliminarPro(aux);
-
-            if(res){
-
-                limpiarCampos();
-
-                MessageBox.Show("El Vehículo se elimino correctamente");
+                MessageBox.Show("Por favor ingresa el número de placa del Vehículo a Eliminar");
 
             }
             else
             {
+                bool res = clsVehi.eliminarPro(aux);
 
-                MessageBox.Show("Ocurrio un error al eliminar el vehículo");
+                if (res)
+                {
+
+                    limpiarCampos();
+
+                    MessageBox.Show("El Vehículo se elimino correctamente");
+
+                }
+                else
+                {
+
+                    MessageBox.Show("Ocurrio un error al eliminar el vehículo");
+                }
             }
+
+          
 
         }
 
