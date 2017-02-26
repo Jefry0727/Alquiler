@@ -15,18 +15,27 @@ namespace Platform.Modeler.DAO
             db = new GeneroDataContext();
         }
 
-        public LinkedList<String> buscarGeneros()
+        public LinkedList<genero> buscarGeneros()
         {
 
-            LinkedList<String> temp = new LinkedList<string>();
+            LinkedList<genero> temp = new LinkedList<genero>();
 
-            var consulta = from x in db.genero select x;
+            //var consulta = from x in db.genero select x;
+
+            var consulta = db.genero.Select(p => new { p.id, p.nombre });
             consulta.First();
 
-            foreach (genero tp in consulta)
+            foreach (var tp in consulta)
             {
-                temp.AddLast(tp.id.ToString());
-                temp.AddLast(tp.nombre);
+
+                genero gen = new genero();
+
+                gen.id = tp.id;
+
+                gen.nombre = tp.nombre;
+
+                temp.AddLast(gen);
+               
             }
 
             return temp;

@@ -18,18 +18,26 @@ namespace Platform.Modeler.DAO
             db = new TipoDocumentoDataContext();
         }
 
-        public LinkedList<String> buscar()
+        public LinkedList<tipo_documento> buscar()
         {
 
-            LinkedList<String> temp = new LinkedList<string>();
+            LinkedList<tipo_documento> temp = new LinkedList<tipo_documento>();
 
-            var consulta = from x in db.tipo_documento select x;
+           // var consulta = from x in db.tipo_documento select x;
+
+            var consulta = db.tipo_documento.Select(p => new { p.id, p.nombre });
             consulta.First();
 
-            foreach (tipo_documento tp in consulta)
+            foreach (var tp in consulta)
             {
-                temp.AddLast(tp.id.ToString());
-                temp.AddLast(tp.nombre);
+                tipo_documento td = new tipo_documento();
+
+                td.id = tp.id;
+
+                td.nombre = tp.nombre;
+
+                temp.AddLast(td);
+                
             }
 
             return temp;

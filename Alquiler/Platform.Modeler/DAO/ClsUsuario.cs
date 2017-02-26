@@ -55,13 +55,25 @@ namespace Platform.Modeler.DAO
 
             LinkedList<usuario> temp = new LinkedList<usuario>();
 
-            var consulta = from x in db.usuario select x;
+            //var consulta = from x in db.usuario select x;
+
+            var consulta = db.usuario.Select(p => new { p.documento, p.nombre, p.apellido, p.edad, p.id });
+
             consulta.First();
 
-            foreach (usuario tp in consulta)
+            foreach (var tp in consulta)
             {
+                usuario us = new usuario();
 
-                temp.AddLast(tp);
+                us.id = tp.id;
+
+                us.nombre = tp.nombre;
+
+                us.apellido = tp.apellido;
+
+                us.edad = tp.edad;
+
+                temp.AddLast(us);
 
             }
 
@@ -110,7 +122,10 @@ namespace Platform.Modeler.DAO
         public LinkedList<String> buscarNormal(String docu)
         {
             LinkedList<String> temp = new LinkedList<string>();
-            var consulta = from x in db.usuario where x.documento == docu select x;
+           // var consulta = from x in db.usuario where x.documento == docu select x;
+
+            var consulta = db.usuario.Where(p => p.documento == docu);
+
             consulta.First();
 
             foreach (usuario estu in consulta)

@@ -1,4 +1,6 @@
-﻿using Platform.Modeler.DAO;
+﻿using Alquiler.Resources;
+using Platform.Modeler.DAO;
+using Platform.Modeler.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +20,9 @@ namespace Alquiler.Navegacion
         ClsCiudad clsCi;
         ClsGenero clsGe;
         ClsUsuario clsUsu;
-        LinkedList<String> tipoDocumentos;
-        LinkedList<String> ciudades;
-        LinkedList<String> generos;
+        LinkedList<tipo_documento> tipoDocumentos;
+        LinkedList<ciudad> ciudades;
+        LinkedList<genero> generos;
         int idGenero;
         int idTipoDoc;
         int idCiudad;
@@ -34,12 +36,12 @@ namespace Alquiler.Navegacion
             clsGe = new ClsGenero();
             clsCi = new ClsCiudad();
             clsUsu = new ClsUsuario();
-            tipoDocumentos = new LinkedList<string>();
-            tipoDocumentos = clsTP.buscar();
-            ciudades = new LinkedList<string>();
-            ciudades = clsCi.buscarCiudades();
-            generos = new LinkedList<string>();
-            generos = clsGe.buscarGeneros();
+            tipoDocumentos = new LinkedList<tipo_documento>();
+            
+            ciudades = new LinkedList<ciudad>();
+            
+            generos = new LinkedList<genero>();
+           
             llenarComboTipoDocumento();
             llenarComboCiudades();
             llenarComboGeneros();
@@ -74,28 +76,58 @@ namespace Alquiler.Navegacion
 
         public void llenarComboTipoDocumento()
         {
+            tipoDocumentos = clsTP.buscar();
             
+            BindingList<Item> tipo = new BindingList<Item>();
+            tipo.Add(new Item("Seleccione Tipo Documento", 0));
+
             for (int i = 0; i < tipoDocumentos.Count; i++)
             {
-                i++;
-                cbTipoDocumento.Items.Add(tipoDocumentos.ElementAt(i));
+                tipo.Add(new Item((tipoDocumentos.ElementAt(i)).nombre, (tipoDocumentos.ElementAt(i)).id));
+
             }
+
+            cbTipoDocumento.DisplayMember = "Name";
+            cbTipoDocumento.ValueMember = "Value";
+            cbTipoDocumento.DataSource = tipo;
+          
         }
         public void llenarComboCiudades()
         {
+
+            ciudades = clsCi.buscarCiudades();
+            BindingList<Item> ciud = new BindingList<Item>();
+            ciud.Add(new Item("Seleccione La Ciudad", 0));
+
             for (int i = 0; i < ciudades.Count; i++)
             {
-                i++;
-                cbCiudadNac.Items.Add(ciudades.ElementAt(i));
+                ciud.Add(new Item((ciudades.ElementAt(i)).nombre, (ciudades.ElementAt(i)).id));
+
             }
+
+            cbCiudadNac.DisplayMember = "Name";
+            cbCiudadNac.ValueMember = "Value";
+            cbCiudadNac.DataSource = ciud;
+          
         }
+
+
         public void llenarComboGeneros()
         {
+            generos = clsGe.buscarGeneros();
+            BindingList<Item> gen = new BindingList<Item>();
+            gen.Add(new Item("Seleccione el genero", 0));
+
             for (int i = 0; i < generos.Count; i++)
             {
-                i++;
-                cbGenero.Items.Add(generos.ElementAt(i));
+                gen.Add(new Item((generos.ElementAt(i)).nombre, (generos.ElementAt(i)).id));
+
             }
+
+            cbGenero.DisplayMember = "Name";
+            cbGenero.ValueMember = "Value";
+            cbGenero.DataSource = gen;
+           
         }
         public void limpiar()
         {

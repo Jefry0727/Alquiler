@@ -97,7 +97,10 @@ namespace Platform.Modeler.DAO
         public LinkedList<String> buscarNormal(String codigo)
         {
             LinkedList<String> temp = new LinkedList<string>();
-            var consulta = from x in db.alquiler where x.codigo == codigo select x;
+            //var consulta = from x in db.alquiler where x.codigo == codigo select x;
+
+            var consulta = db.alquiler.Where(p => p.codigo == codigo);
+
             consulta.First();
 
             foreach (alquiler estu in consulta)

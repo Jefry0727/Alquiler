@@ -24,13 +24,21 @@ namespace Platform.Modeler.DAO
            LinkedList<marca> temp = new LinkedList<marca>();
 
           
-           var consulta = from x in db.marca select x;
+           //var consulta = from x in db.marca select x;
+
+           var consulta = db.marca.Select(p => new { p.id, p.nombre });
+
            consulta.First();
 
-           foreach (marca tp in consulta)
+           foreach (var tp in consulta)
            {
+               marca m = new marca();
 
-               temp.AddLast(tp);
+               m.id = tp.id;
+
+               m.nombre = tp.nombre;
+
+               temp.AddLast(m);
             
            }
 

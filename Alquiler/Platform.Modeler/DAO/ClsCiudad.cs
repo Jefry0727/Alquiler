@@ -17,18 +17,27 @@ namespace Platform.Modeler.DAO
         }
 
 
-        public LinkedList<String> buscarCiudades()
+        public LinkedList<ciudad> buscarCiudades()
         {
 
-            LinkedList<String> temp = new LinkedList<string>();
+            LinkedList<ciudad> temp = new LinkedList<ciudad>();
 
-            var consulta = from x in db.ciudad select x;
+           // var consulta = from x in db.ciudad select x;
+
+            var consulta = db.ciudad.Select(p => new {p.id, p.nombre });
+
             consulta.First();
 
-            foreach (ciudad tp in consulta)
+            foreach (var tp in consulta)
             {
-                temp.AddLast(tp.id.ToString());
-                temp.AddLast(tp.nombre);
+                ciudad c = new ciudad();
+                
+                c.id = tp.id;
+
+                c.nombre = tp.nombre;
+
+                temp.AddLast(c);
+               
             }
 
             return temp;

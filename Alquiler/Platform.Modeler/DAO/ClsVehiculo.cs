@@ -84,13 +84,22 @@ namespace Platform.Modeler.DAO
 
             LinkedList<vehiculo> temp = new LinkedList<vehiculo>();
 
-            var consulta = from x in db.vehiculo select x;
+            //var consulta = from x in db.vehiculo select x;
+
+            var consulta = db.vehiculo.Select(p => new { p.id, p.placa});
+
             consulta.First();
 
-            foreach (vehiculo tp in consulta)
+            foreach (var tp in consulta)
             {
 
-                temp.AddLast(tp);
+                vehiculo ve = new vehiculo();
+
+                ve.id = tp.id;
+
+                ve.placa = tp.placa;
+
+                temp.AddLast(ve);
 
             }
 
@@ -139,7 +148,10 @@ namespace Platform.Modeler.DAO
         public LinkedList<String> buscarNormal(String placa)
         {
             LinkedList<String> temp = new LinkedList<string>();
-            var consulta = from x in db.vehiculo where x.placa == placa select x;
+            //var consulta = from x in db.vehiculo where x.placa == placa select x;
+
+            var consulta = db.vehiculo.Where(p => p.placa == placa);
+
             consulta.First();
 
             foreach (vehiculo estu in consulta)

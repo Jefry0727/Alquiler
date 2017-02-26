@@ -54,8 +54,12 @@
             this.btnBuscarNormal = new System.Windows.Forms.Button();
             this.btnModificarNormal = new System.Windows.Forms.Button();
             this.btnEliminarNormal = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.alquilerVehiculosDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -264,11 +268,28 @@
             this.btnEliminarNormal.UseVisualStyleBackColor = true;
             this.btnEliminarNormal.Click += new System.EventHandler(this.btnEliminarNormal_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Location = new System.Drawing.Point(12, 221);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(643, 165);
+            this.panel1.TabIndex = 24;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(637, 159);
+            this.dataGridView1.TabIndex = 0;
+            // 
             // Usuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(615, 211);
+            this.ClientSize = new System.Drawing.Size(667, 398);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEliminarNormal);
             this.Controls.Add(this.btnModificarNormal);
             this.Controls.Add(this.btnBuscarNormal);
@@ -297,6 +318,8 @@
             this.Load += new System.EventHandler(this.Usuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.alquilerVehiculosDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,5 +354,7 @@
         private System.Windows.Forms.Button btnBuscarNormal;
         private System.Windows.Forms.Button btnModificarNormal;
         private System.Windows.Forms.Button btnEliminarNormal;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
