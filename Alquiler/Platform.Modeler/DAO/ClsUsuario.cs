@@ -21,31 +21,52 @@ namespace Platform.Modeler.DAO
         public bool guardar(String documento, String nombre, String apellido, int edad, int idGenero,
             int idTipoDoc, int idCiu)
         {
-            db.guardarUsuarioPro(documento, nombre, apellido, edad, idGenero, idTipoDoc, idCiu);
-            return true;
+            try
+            {
+
+                db.guardarUsuarioPro(documento, nombre, apellido, edad, idGenero, idTipoDoc, idCiu);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+
+                return false;
+
+            }
+
         }
 
         //Metodo para buscar a un usuario por el documento en la bd
         //utilizando Linq
         public LinkedList<String> buscar(String docu)
         {
-            LinkedList<String> temp = new LinkedList<String>();
-            var consu = db.buscarUsuarioPro(docu).Single();
-            temp.AddLast(consu.id.ToString());
-            temp.AddLast(consu.nombre);
-            temp.AddLast(consu.apellido);
-            temp.AddLast(consu.edad.ToString());
-            temp.AddLast(consu.genero_id.ToString());
-            temp.AddLast(consu.tipo_documento_id.ToString());
-            temp.AddLast(consu.ciudad_id.ToString());
-            if (temp.Count > 0)
+            try
             {
-                return temp;
-            }
-            else
-            {
+                LinkedList<String> temp = new LinkedList<String>();
+                var consu = db.buscarUsuarioPro(docu).Single();
+
+                temp.AddLast(consu.id.ToString());
+                temp.AddLast(consu.nombre);
+                temp.AddLast(consu.apellido);
+                temp.AddLast(consu.edad.ToString());
+                temp.AddLast(consu.genero_id.ToString());
+                temp.AddLast(consu.tipo_documento_id.ToString());
+                temp.AddLast(consu.ciudad_id.ToString());
+                if (temp.Count > 0)
+                {
+                    return temp;
+                }
+                else
+                {
+                    return null;
+                }
+            }catch(Exception ex){
+
                 return null;
+
             }
+            
 
 
         }
@@ -57,7 +78,7 @@ namespace Platform.Modeler.DAO
 
             //var consulta = from x in db.usuario select x;
 
-            var consulta = db.usuario.Select(p => new { p.documento, p.nombre, p.apellido, p.edad, p.id });
+            var consulta = db.usuario.Select(p => new { p.documento, p.nombre, p.apellido, p.edad, p.id, p.tipo_documento_id });
 
             consulta.First();
 
@@ -67,11 +88,15 @@ namespace Platform.Modeler.DAO
 
                 us.id = tp.id;
 
+                us.documento = tp.documento;
+
                 us.nombre = tp.nombre;
 
                 us.apellido = tp.apellido;
 
                 us.edad = tp.edad;
+
+                us.tipo_documento_id = tp.tipo_documento_id;
 
                 temp.AddLast(us);
 
@@ -84,9 +109,21 @@ namespace Platform.Modeler.DAO
         public bool modificarUsuario(int id, String documento, String nombre, String apellido, int edad,
             int idGenero, int idTipoDoc, int idCiudad)
         {
-            db.modificarUsuarioPro(id, documento, nombre, apellido, edad,
-             idGenero, idTipoDoc, idCiudad);
-            return true;
+            try
+            {
+
+               db.modificarUsuarioPro(id, documento, nombre, apellido, edad,
+            idGenero, idTipoDoc, idCiudad);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+
+                return false;
+
+            }
+
         }
 
         public bool eliminarUsuario(int id)
@@ -121,25 +158,35 @@ namespace Platform.Modeler.DAO
 
         public LinkedList<String> buscarNormal(String docu)
         {
-            LinkedList<String> temp = new LinkedList<string>();
-           // var consulta = from x in db.usuario where x.documento == docu select x;
-
-            var consulta = db.usuario.Where(p => p.documento == docu);
-
-            consulta.First();
-
-            foreach (usuario estu in consulta)
+            try
             {
-                temp.AddLast(estu.id.ToString());
-                temp.AddLast(estu.nombre);
-                temp.AddLast(estu.apellido);
-                temp.AddLast(estu.edad.ToString());
-                temp.AddLast(estu.genero_id.ToString());
-                temp.AddLast(estu.tipo_documento_id.ToString());
-                temp.AddLast(estu.ciudad_id.ToString());
-            }
+                LinkedList<String> temp = new LinkedList<string>();
+                // var consulta = from x in db.usuario where x.documento == docu select x;
 
-            return temp;
+                var consulta = db.usuario.Where(p => p.documento == docu);
+
+                consulta.First();
+
+                foreach (usuario estu in consulta)
+                {
+                    temp.AddLast(estu.id.ToString());
+                    temp.AddLast(estu.nombre);
+                    temp.AddLast(estu.apellido);
+                    temp.AddLast(estu.edad.ToString());
+                    temp.AddLast(estu.genero_id.ToString());
+                    temp.AddLast(estu.tipo_documento_id.ToString());
+                    temp.AddLast(estu.ciudad_id.ToString());
+                }
+
+                return temp;
+
+
+            }catch(Exception ex){
+
+                return null;
+
+            }
+          
         }
 
         public bool modificarNormal(int id, String documento, String nombre, String apellido, int edad,

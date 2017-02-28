@@ -44,10 +44,22 @@ namespace Platform.Modeler.DAO
 
         }
 
-        public int obtenerIdTipoDoc(String nombre)
+        public String obtenerIdTipoDoc(int id)
         {
-            var consu = db.tipo_documentos_nombre(nombre).Single();            
-            return consu.id;
+           // var consu = db.tipo_documentos_nombre(nombre).Single();   
+            var consulta = db.tipo_documento.Where(p => p.id == id);
+
+            consulta.First();
+
+            String nombre = "";
+            foreach (var estu in consulta)
+            {
+                nombre = estu.nombre;
+            
+            }
+
+            return nombre;
+            
         }
 
     }

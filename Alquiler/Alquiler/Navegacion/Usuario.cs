@@ -23,9 +23,9 @@ namespace Alquiler.Navegacion
         LinkedList<tipo_documento> tipoDocumentos;
         LinkedList<ciudad> ciudades;
         LinkedList<genero> generos;
-        int idGenero;
-        int idTipoDoc;
-        int idCiudad;
+        Int32 idGenero;
+        Int32 idTipoDoc;
+        Int32 idCiudad;
         String idUsuario;
         int aux;
 
@@ -45,6 +45,8 @@ namespace Alquiler.Navegacion
             llenarComboTipoDocumento();
             llenarComboCiudades();
             llenarComboGeneros();
+
+            listarTabla();
         }
 
         private void Usuario_Load(object sender, EventArgs e)
@@ -143,24 +145,55 @@ namespace Alquiler.Navegacion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
-            String nombreTipoDoc = cbTipoDocumento.SelectedItem.ToString();
-            String nombreCiu = cbCiudadNac.SelectedItem.ToString();
-            String nombreGen = cbGenero.SelectedItem.ToString();
-            idCiudad = clsCi.obtenerIdCiudad(nombreCiu);
-            idGenero = clsGe.obtenerIdGenero(nombreGen);
-            idTipoDoc = clsTP.obtenerIdTipoDoc(nombreTipoDoc);
+            idCiudad = (Int32)cbCiudadNac.SelectedValue;
+
+            idGenero = (Int32)cbGenero.SelectedValue;
+
+            idTipoDoc =(Int32)cbTipoDocumento.SelectedValue;
+
             String doc = txtDocumento.Text;
+
             String nombre = txtNombre.Text;
+
             String apellido = txtApellido.Text;
-            int edad = Convert.ToInt32(txtEdad.Text);
-            if(clsUsu.guardar(doc,nombre,apellido,edad,idGenero,idTipoDoc,idCiudad)){
-                MessageBox.Show("Se creo con exito");
-                limpiar();
-            }
-            else
+
+            int edad = 0;
+
+            try
             {
-                MessageBox.Show("Error al tratar de crear");
+                 edad = Convert.ToInt32(txtEdad.Text);
+
+                 if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == "")
+                 {
+
+                     MessageBox.Show("Por favor complete la información del formulario");
+
+                 }
+                 else
+                 {
+
+                     if (clsUsu.guardar(doc, nombre, apellido, edad, idGenero, idTipoDoc, idCiudad))
+                     {
+                         MessageBox.Show("El Usuario se creo con correctamente");
+                         limpiar();
+                     }
+                     else
+                     {
+                         MessageBox.Show("Error al tratar de crear el Usuario");
+                     }
+
+                 }
+           
+
+            }catch(Exception ex){
+
+                MessageBox.Show("Por favor ingresar un dato numerico en el campo edad");
+
             }
+
+            
+
+           
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -171,20 +204,33 @@ namespace Alquiler.Navegacion
             }else{
                 LinkedList<String> temp = new LinkedList<string>();
                 temp = clsUsu.buscar(doc);
-                if(temp.Count > 0){
+
+                if(temp != null){
+
+                    btnGuardar.Enabled = false;
+
+                    txtDocumento.Enabled = false;
+
                     idUsuario = temp.ElementAt(0);
+
                     aux = Convert.ToInt32(idUsuario);
+
                     txtNombre.Text = temp.ElementAt(1);
+
                     txtApellido.Text = temp.ElementAt(2);
+
                     txtEdad.Text = temp.ElementAt(3);
-                    cbGenero.SelectedText = temp.ElementAt(4);
-                    cbTipoDocumento.SelectedText = temp.ElementAt(5);
-                    cbCiudadNac.SelectedText = temp.ElementAt(6);
+
+                    cbGenero.SelectedValue = Convert.ToInt32(temp.ElementAt(4));
+
+                    cbTipoDocumento.SelectedValue = Convert.ToInt32(temp.ElementAt(5));
+
+                    cbCiudadNac.SelectedValue = Convert.ToInt32(temp.ElementAt(6));
                     
                 }
                 else
                 {
-                    MessageBox.Show("No se encontro");
+                    MessageBox.Show("Error no existe ese vehiculo");
                 }
                
             }
@@ -194,57 +240,141 @@ namespace Alquiler.Navegacion
         private void btnModificar_Click(object sender, EventArgs e)
         {
 
+            idCiudad = (Int32)cbCiudadNac.SelectedValue;
+
+            idGenero = (Int32)cbGenero.SelectedValue; ;
+
+            idTipoDoc = (Int32)cbTipoDocumento.SelectedValue;
+
             String doc = txtDocumento.Text;
+
             String nombre = txtNombre.Text;
+
             String apellido = txtApellido.Text;
-            int edad = Convert.ToInt32(txtEdad.Text);
-            String nombreTipoDoc = cbTipoDocumento.SelectedItem.ToString();
-            String nombreCiu = cbCiudadNac.SelectedItem.ToString();
-            String nombreGen = cbGenero.SelectedItem.ToString();
-            idCiudad = clsCi.obtenerIdCiudad(nombreCiu);
-            idGenero = clsGe.obtenerIdGenero(nombreGen);
-            idTipoDoc = clsTP.obtenerIdTipoDoc(nombreTipoDoc);
-            if(clsUsu.modificarUsuario(aux,doc,nombre,apellido,edad,idGenero,idTipoDoc,idCiudad)){
-                MessageBox.Show("Se modifico con exito");
-                limpiar();
-            }
-            else
+
+            int edad = 0;
+
+            try
             {
-                MessageBox.Show("error al modificar");
+                edad = Convert.ToInt32(txtEdad.Text);
+
+                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == "")
+                {
+
+                    MessageBox.Show("Por favor complete la información del formulario");
+
+                }
+                else
+                {
+
+                    if (clsUsu.modificarUsuario(aux, doc, nombre, apellido, edad, idGenero, idTipoDoc, idCiudad))
+                    {
+                        MessageBox.Show("El Usuario se modifico correctamente");
+
+                        btnGuardar.Enabled = true;
+
+                        txtDocumento.Enabled = true;
+
+                        limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("error al modificar");
+                    }
+
+                }
+
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Por favor ingresar un dato numerico en el campo edad");
+
+            }
+
+            
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if(clsUsu.eliminarUsuario(aux)){
-                MessageBox.Show("Eliminado con exito");
-                limpiar();
-            }else{
-                MessageBox.Show("Error al tratar de eliminar");
+            if(aux == 0){
+
+                MessageBox.Show("Debe de buscar un usuario antes de eliminar");
             }
+            else
+            {
+
+                if (clsUsu.eliminarUsuario(aux))
+                {
+                    MessageBox.Show("El Usuario fue Eliminado con exito");
+
+                    btnGuardar.Enabled = true;
+
+                    txtDocumento.Enabled = true;
+
+                    limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("Error al tratar de eliminar");
+                }
+
+
+            }
+
+            
             
         }
 
         private void btnGuardarNormal_Click(object sender, EventArgs e)
         {
-            String nombreTipoDoc = cbTipoDocumento.SelectedItem.ToString();
-            String nombreCiu = cbCiudadNac.SelectedItem.ToString();
-            String nombreGen = cbGenero.SelectedItem.ToString();
-            idCiudad = clsCi.obtenerIdCiudad(nombreCiu);
-            idGenero = clsGe.obtenerIdGenero(nombreGen);
-            idTipoDoc = clsTP.obtenerIdTipoDoc(nombreTipoDoc);
+            idCiudad = (Int32)cbCiudadNac.SelectedValue;
+
+            idGenero = (Int32)cbGenero.SelectedValue;
+
+            idTipoDoc = (Int32)cbTipoDocumento.SelectedValue;
+
             String doc = txtDocumento.Text;
+
             String nombre = txtNombre.Text;
+
             String apellido = txtApellido.Text;
-            int edad = Convert.ToInt32(txtEdad.Text);
-            if (clsUsu.guardarNormal(doc, nombre, apellido, edad, idGenero, idTipoDoc, idCiudad))
+
+            int edad = 0;
+
+            try
             {
-                MessageBox.Show("Se creo con exito");
-                limpiar();
+                edad = Convert.ToInt32(txtEdad.Text);
+
+                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == "")
+                {
+
+                    MessageBox.Show("Por favor complete la información del formulario");
+
+                }
+                else
+                {
+
+                    if (clsUsu.guardarNormal(doc, nombre, apellido, edad, idGenero, idTipoDoc, idCiudad))
+                    {
+                        MessageBox.Show("El Usuario se creo con correctamente");
+                        limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al tratar de crear el Usuario");
+                    }
+
+                }
+
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error al tratar de crear");
+
+                MessageBox.Show("Por favor ingresar un dato numerico en el campo edad");
+
             }
         }
 
@@ -264,7 +394,10 @@ namespace Alquiler.Navegacion
                 }
                 else
                 {
-                    MessageBox.Show("Encontrado");
+                    btnGuardarNormal.Enabled = false;
+
+                    txtDocumento.Enabled = false;
+
                     aux = Convert.ToInt32(temp.ElementAt(0));
                     txtNombre.Text = temp.ElementAt(1);
                     txtApellido.Text = temp.ElementAt(2);
@@ -278,37 +411,86 @@ namespace Alquiler.Navegacion
 
         private void btnModificarNormal_Click(object sender, EventArgs e)
         {
+            idCiudad = (Int32)cbCiudadNac.SelectedValue;
+
+            idGenero = (Int32)cbGenero.SelectedValue; ;
+
+            idTipoDoc = (Int32)cbTipoDocumento.SelectedValue;
+
             String doc = txtDocumento.Text;
+
             String nombre = txtNombre.Text;
+
             String apellido = txtApellido.Text;
-            int edad = Convert.ToInt32(txtEdad.Text);
-            String nombreTipoDoc = cbTipoDocumento.SelectedItem.ToString();
-            String nombreCiu = cbCiudadNac.SelectedItem.ToString();
-            String nombreGen = cbGenero.SelectedItem.ToString();
-            idCiudad = clsCi.obtenerIdCiudad(nombreCiu);
-            idGenero = clsGe.obtenerIdGenero(nombreGen);
-            idTipoDoc = clsTP.obtenerIdTipoDoc(nombreTipoDoc);
-            if (clsUsu.modificarNormal(aux, doc, nombre, apellido, edad, idGenero, idTipoDoc, idCiudad))
+
+            int edad = 0;
+
+            try
             {
-                MessageBox.Show("Se modifico con exito");
-                limpiar();
+                edad = Convert.ToInt32(txtEdad.Text);
+
+                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == "")
+                {
+
+                    MessageBox.Show("Por favor complete la información del formulario");
+
+                }
+                else
+                {
+
+                    if (clsUsu.modificarNormal(aux, doc, nombre, apellido, edad, idGenero, idTipoDoc, idCiudad))
+                    {
+                        MessageBox.Show("El Usuario se modifico correctamente");
+
+                        btnGuardar.Enabled = true;
+
+                        txtDocumento.Enabled = true;
+
+                        limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("error al modificar");
+                    }
+
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("error al modificar");
+
+                MessageBox.Show("Por favor ingresar un dato numerico en el campo edad");
+
             }
         }
 
         private void btnEliminarNormal_Click(object sender, EventArgs e)
         {
-            if (clsUsu.eliminarNormal(aux))
+            if (aux == 0)
             {
-                MessageBox.Show("Eliminado con exito");
-                limpiar();
+
+                MessageBox.Show("Debe de buscar un usuario antes de eliminar");
             }
             else
             {
-                MessageBox.Show("Error al tratar de eliminar");
+
+                if (clsUsu.eliminarNormal(aux))
+                {
+                    MessageBox.Show("El Usuario fue Eliminado con exito");
+
+                    btnGuardarNormal.Enabled = true;
+
+                    txtDocumento.Enabled = true;
+
+                    limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("Error al tratar de eliminar");
+                }
+
+
+
             }
         }
 
@@ -317,5 +499,19 @@ namespace Alquiler.Navegacion
             limpiar();
         }
 
+
+        public void listarTabla()
+        {
+
+           LinkedList<usuario> u =  clsUsu.listarUsuarios();
+            foreach(usuario us in u){
+                Console.WriteLine(us.documento);
+                String nombre = clsTP.obtenerIdTipoDoc(us.tipo_documento_id);
+                dgUsuario.Rows.Add(us.documento ,us.nombre, nombre, us.apellido, us.edad);
+
+            }
+            
+
+        }
     }
 }

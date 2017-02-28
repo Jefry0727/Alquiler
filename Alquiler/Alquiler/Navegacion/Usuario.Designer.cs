@@ -55,11 +55,16 @@
             this.btnModificarNormal = new System.Windows.Forms.Button();
             this.btnEliminarNormal = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgUsuario = new System.Windows.Forms.DataGridView();
+            this.Documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoDocumento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.alquilerVehiculosDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgUsuario)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -127,56 +132,59 @@
             // 
             // cbTipoDocumento
             // 
+            this.cbTipoDocumento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoDocumento.FormattingEnabled = true;
             this.cbTipoDocumento.Location = new System.Drawing.Point(437, 19);
             this.cbTipoDocumento.Name = "cbTipoDocumento";
             this.cbTipoDocumento.Size = new System.Drawing.Size(121, 21);
-            this.cbTipoDocumento.TabIndex = 7;
+            this.cbTipoDocumento.TabIndex = 2;
             this.cbTipoDocumento.SelectedIndexChanged += new System.EventHandler(this.cbTipoDocumento_SelectedIndexChanged);
             // 
             // cbCiudadNac
             // 
+            this.cbCiudadNac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCiudadNac.FormattingEnabled = true;
             this.cbCiudadNac.Location = new System.Drawing.Point(157, 78);
             this.cbCiudadNac.Name = "cbCiudadNac";
             this.cbCiudadNac.Size = new System.Drawing.Size(121, 21);
-            this.cbCiudadNac.TabIndex = 8;
+            this.cbCiudadNac.TabIndex = 5;
             // 
             // cbGenero
             // 
+            this.cbGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGenero.FormattingEnabled = true;
             this.cbGenero.Location = new System.Drawing.Point(157, 114);
             this.cbGenero.Name = "cbGenero";
             this.cbGenero.Size = new System.Drawing.Size(121, 21);
-            this.cbGenero.TabIndex = 9;
+            this.cbGenero.TabIndex = 7;
             // 
             // txtDocumento
             // 
             this.txtDocumento.Location = new System.Drawing.Point(157, 19);
             this.txtDocumento.Name = "txtDocumento";
             this.txtDocumento.Size = new System.Drawing.Size(121, 20);
-            this.txtDocumento.TabIndex = 10;
+            this.txtDocumento.TabIndex = 1;
             // 
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(157, 49);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(121, 20);
-            this.txtNombre.TabIndex = 11;
+            this.txtNombre.TabIndex = 3;
             // 
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(438, 46);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(121, 20);
-            this.txtApellido.TabIndex = 12;
+            this.txtApellido.TabIndex = 4;
             // 
             // txtEdad
             // 
             this.txtEdad.Location = new System.Drawing.Point(438, 78);
             this.txtEdad.Name = "txtEdad";
             this.txtEdad.Size = new System.Drawing.Size(121, 20);
-            this.txtEdad.TabIndex = 13;
+            this.txtEdad.TabIndex = 6;
             // 
             // btnGuardar
             // 
@@ -270,19 +278,50 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(12, 221);
+            this.panel1.Controls.Add(this.dgUsuario);
+            this.panel1.Location = new System.Drawing.Point(42, 221);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(643, 165);
+            this.panel1.Size = new System.Drawing.Size(547, 165);
             this.panel1.TabIndex = 24;
             // 
-            // dataGridView1
+            // dgUsuario
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(637, 159);
-            this.dataGridView1.TabIndex = 0;
+            this.dgUsuario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgUsuario.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Documento,
+            this.Nombre,
+            this.TipoDocumento,
+            this.Apellido,
+            this.edad});
+            this.dgUsuario.Location = new System.Drawing.Point(3, 12);
+            this.dgUsuario.Name = "dgUsuario";
+            this.dgUsuario.Size = new System.Drawing.Size(543, 137);
+            this.dgUsuario.TabIndex = 0;
+            // 
+            // Documento
+            // 
+            this.Documento.HeaderText = "Documento";
+            this.Documento.Name = "Documento";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // TipoDocumento
+            // 
+            this.TipoDocumento.HeaderText = "TipoDocumento";
+            this.TipoDocumento.Name = "TipoDocumento";
+            // 
+            // Apellido
+            // 
+            this.Apellido.HeaderText = "Apellido";
+            this.Apellido.Name = "Apellido";
+            // 
+            // edad
+            // 
+            this.edad.HeaderText = "edad";
+            this.edad.Name = "edad";
             // 
             // Usuario
             // 
@@ -319,7 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.alquilerVehiculosDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgUsuario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,6 +394,11 @@
         private System.Windows.Forms.Button btnModificarNormal;
         private System.Windows.Forms.Button btnEliminarNormal;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Documento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoDocumento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn edad;
     }
 }
