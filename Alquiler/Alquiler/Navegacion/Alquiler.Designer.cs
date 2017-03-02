@@ -40,13 +40,17 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgAlquiler = new System.Windows.Forms.DataGridView();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnGuardarNormal = new System.Windows.Forms.Button();
             this.btnBuscarNormal = new System.Windows.Forms.Button();
             this.btnModificarNormal = new System.Windows.Forms.Button();
             this.btnEliminarNormal = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAlquiler)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -94,6 +98,7 @@
             // 
             // cbUsuario
             // 
+            this.cbUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUsuario.FormattingEnabled = true;
             this.cbUsuario.Location = new System.Drawing.Point(107, 55);
             this.cbUsuario.Name = "cbUsuario";
@@ -102,6 +107,7 @@
             // 
             // cbVehiculo
             // 
+            this.cbVehiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVehiculo.FormattingEnabled = true;
             this.cbVehiculo.Location = new System.Drawing.Point(108, 90);
             this.cbVehiculo.Name = "cbVehiculo";
@@ -156,13 +162,39 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // dataGridView1
+            // dgAlquiler
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(58, 224);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(442, 150);
-            this.dataGridView1.TabIndex = 12;
+            this.dgAlquiler.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAlquiler.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.codigo,
+            this.fecha,
+            this.usuario,
+            this.placa});
+            this.dgAlquiler.Location = new System.Drawing.Point(33, 224);
+            this.dgAlquiler.Name = "dgAlquiler";
+            this.dgAlquiler.Size = new System.Drawing.Size(491, 142);
+            this.dgAlquiler.TabIndex = 12;
+            // 
+            // codigo
+            // 
+            this.codigo.HeaderText = "Codigo";
+            this.codigo.Name = "codigo";
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Fecha Alquiler";
+            this.fecha.Name = "fecha";
+            // 
+            // usuario
+            // 
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            // 
+            // placa
+            // 
+            this.placa.HeaderText = "Placa Vehiculo";
+            this.placa.Name = "placa";
+            this.placa.Width = 150;
             // 
             // btnVolver
             // 
@@ -224,7 +256,7 @@
             this.Controls.Add(this.btnBuscarNormal);
             this.Controls.Add(this.btnGuardarNormal);
             this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgAlquiler);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnBuscar);
@@ -240,7 +272,7 @@
             this.Name = "Alquiler";
             this.Text = "Alquiler";
             this.Load += new System.EventHandler(this.Alquiler_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAlquiler)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,11 +292,15 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgAlquiler;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnGuardarNormal;
         private System.Windows.Forms.Button btnBuscarNormal;
         private System.Windows.Forms.Button btnModificarNormal;
         private System.Windows.Forms.Button btnEliminarNormal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn placa;
     }
 }

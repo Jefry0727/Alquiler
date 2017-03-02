@@ -59,22 +59,29 @@ namespace Platform.Modeler.DAO
         public LinkedList<String> buscarPro(String placa)
         {
             LinkedList<String> temp = new LinkedList<String>();
-            var consu = db.buscarVehiculo(placa).Single();
-            temp.AddLast(consu.id.ToString());
-            temp.AddLast(consu.placa);
-            temp.AddLast(consu.numero_puestos.ToString());
-            temp.AddLast(consu.valor_dia.ToString());
-            temp.AddLast(consu.marca_id.ToString());
-            temp.AddLast(consu.color);
 
-            if (temp.Count > 0)
+            try
             {
+
+                var consu = db.buscarVehiculo(placa).Single();
+
+                temp.AddLast(consu.id.ToString());
+                temp.AddLast(consu.placa);
+                temp.AddLast(consu.numero_puestos.ToString());
+                temp.AddLast(consu.valor_dia.ToString());
+                temp.AddLast(consu.marca_id.ToString());
+                temp.AddLast(consu.color);
+
                 return temp;
-            }
-            else
-            {
+              
+                
+            }catch(Exception ex){
+
                 return null;
+
             }
+
+            
 
 
         }
@@ -86,7 +93,7 @@ namespace Platform.Modeler.DAO
 
             //var consulta = from x in db.vehiculo select x;
 
-            var consulta = db.vehiculo.Select(p => new { p.id, p.placa});
+            var consulta = db.vehiculo.Select(p => new { p.id, p.placa, p.numero_puestos, p.marca_id, p.valor_dia, p.color});
 
             consulta.First();
 
@@ -98,6 +105,14 @@ namespace Platform.Modeler.DAO
                 ve.id = tp.id;
 
                 ve.placa = tp.placa;
+
+                ve.color = tp.color;
+
+                ve.marca_id = tp.marca_id;
+
+                ve.valor_dia = tp.valor_dia;
+
+                ve.numero_puestos = tp.numero_puestos;
 
                 temp.AddLast(ve);
 
@@ -130,13 +145,17 @@ namespace Platform.Modeler.DAO
             try
             {
                 vehiculo v = new vehiculo();
+
                 v.placa = placa;
                 v.numero_puestos = numPuestos;
                 v.color = color;
                 v.valor_dia = valorDia;
                 v.marca_id = idMarca;
+
                 db.vehiculo.InsertOnSubmit(v);//ingresa el objeto temporal estu
+
                 db.SubmitChanges();//se hace submit
+
                 return true;
             }
             catch (Exception e)
@@ -149,23 +168,32 @@ namespace Platform.Modeler.DAO
         {
             LinkedList<String> temp = new LinkedList<string>();
             //var consulta = from x in db.vehiculo where x.placa == placa select x;
-
-            var consulta = db.vehiculo.Where(p => p.placa == placa);
-
-            consulta.First();
-
-            foreach (vehiculo estu in consulta)
+            try
             {
-                temp.AddLast(estu.id.ToString());
-                temp.AddLast(estu.placa);
-                temp.AddLast(estu.numero_puestos.ToString());
-                temp.AddLast(estu.color);
-                temp.AddLast(estu.marca_id.ToString());
-                temp.AddLast(estu.valor_dia.ToString());
-                
-            }
 
-            return temp;
+                var consulta = db.vehiculo.Where(p => p.placa == placa);
+
+                consulta.First();
+
+                foreach (vehiculo estu in consulta)
+                {
+                    temp.AddLast(estu.id.ToString());
+                    temp.AddLast(estu.placa);
+                    temp.AddLast(estu.numero_puestos.ToString());
+                    temp.AddLast(estu.color);
+                    temp.AddLast(estu.marca_id.ToString());
+                    temp.AddLast(estu.valor_dia.ToString());
+
+                }
+
+                return temp;
+
+            }catch(Exception ex){
+
+                return null;
+
+            }
+            
 
         }
 
@@ -173,7 +201,10 @@ namespace Platform.Modeler.DAO
         {
             try
             {
-                var consulta = from x in db.vehiculo where x.id == id select x;
+               // var consulta = from x in db.vehiculo where x.id == id select x;
+
+                var consulta = db.vehiculo.Where(p => p.id == id);
+
                 consulta.First();
 
                 foreach (vehiculo est in consulta)
@@ -197,7 +228,9 @@ namespace Platform.Modeler.DAO
         {
             try
             {
-                var consulta = from x in db.vehiculo where x.id == id select x;
+               //var consulta = from x in db.vehiculo where x.id == id select x;
+
+                var consulta = db.vehiculo.Where(p => p.id == id);
 
                 foreach (vehiculo est in consulta)
                 {
@@ -212,6 +245,24 @@ namespace Platform.Modeler.DAO
             {
                 return false;
             }
+        }
+
+        public String buscarVehiculoId(int id)
+        {
+
+            var consulta = db.vehiculo.Where(p => p.id == id);
+
+            consulta.First();
+
+            String placa = "";
+
+            foreach (var estu in consulta)
+            {
+                placa = estu.placa;
+
+            }
+
+            return placa;
         }
 
     }

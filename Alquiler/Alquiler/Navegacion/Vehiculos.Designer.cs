@@ -42,13 +42,18 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgVehiculo = new System.Windows.Forms.DataGridView();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnGuardarNormal = new System.Windows.Forms.Button();
             this.btnBuscarNormal = new System.Windows.Forms.Button();
             this.btnModificarNormal = new System.Windows.Forms.Button();
             this.btnEliminarNormal = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroPuestos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorDia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.marcas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgVehiculo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -126,6 +131,7 @@
             // 
             // cbMarca
             // 
+            this.cbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMarca.FormattingEnabled = true;
             this.cbMarca.Location = new System.Drawing.Point(364, 34);
             this.cbMarca.Name = "cbMarca";
@@ -173,13 +179,19 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // dataGridView1
+            // dgVehiculo
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(39, 236);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(456, 150);
-            this.dataGridView1.TabIndex = 14;
+            this.dgVehiculo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgVehiculo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.placa,
+            this.numeroPuestos,
+            this.color,
+            this.valorDia,
+            this.marcas});
+            this.dgVehiculo.Location = new System.Drawing.Point(12, 236);
+            this.dgVehiculo.Name = "dgVehiculo";
+            this.dgVehiculo.Size = new System.Drawing.Size(537, 130);
+            this.dgVehiculo.TabIndex = 14;
             // 
             // btnVolver
             // 
@@ -231,6 +243,31 @@
             this.btnEliminarNormal.UseVisualStyleBackColor = true;
             this.btnEliminarNormal.Click += new System.EventHandler(this.btnEliminarNormal_Click);
             // 
+            // placa
+            // 
+            this.placa.HeaderText = "Placa";
+            this.placa.Name = "placa";
+            // 
+            // numeroPuestos
+            // 
+            this.numeroPuestos.HeaderText = "Puestos";
+            this.numeroPuestos.Name = "numeroPuestos";
+            // 
+            // color
+            // 
+            this.color.HeaderText = "Color";
+            this.color.Name = "color";
+            // 
+            // valorDia
+            // 
+            this.valorDia.HeaderText = "Valor";
+            this.valorDia.Name = "valorDia";
+            // 
+            // marcas
+            // 
+            this.marcas.HeaderText = "Marca";
+            this.marcas.Name = "marcas";
+            // 
             // Vehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,7 +278,7 @@
             this.Controls.Add(this.btnBuscarNormal);
             this.Controls.Add(this.btnGuardarNormal);
             this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgVehiculo);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnBuscar);
@@ -259,7 +296,7 @@
             this.Name = "Vehiculos";
             this.Text = "Vehiculos";
             this.Load += new System.EventHandler(this.Vehiculos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgVehiculo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,11 +318,16 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgVehiculo;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnGuardarNormal;
         private System.Windows.Forms.Button btnBuscarNormal;
         private System.Windows.Forms.Button btnModificarNormal;
         private System.Windows.Forms.Button btnEliminarNormal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn placa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroPuestos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn color;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valorDia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn marcas;
     }
 }

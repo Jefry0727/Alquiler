@@ -34,8 +34,10 @@ namespace Platform.Modeler.DAO
         public LinkedList<String> buscarPro(String codigo)
         {
             LinkedList<String> temp = new LinkedList<String>();
+            try
+            {
 
-            var consu = db.buscarAlquilerPro(codigo).Single();
+                 var consu = db.buscarAlquilerPro(codigo).Single();
 
             temp.AddLast(consu.id.ToString());
             temp.AddLast(consu.codigo);
@@ -43,16 +45,18 @@ namespace Platform.Modeler.DAO
             temp.AddLast(consu.vehiculo_id.ToString());
             temp.AddLast(consu.fecha_alquiler.ToString());
             
-           
-            if (temp.Count > 0)
-            {
-                return temp;
-            }
-            else
-            {
-                return null;
-            }
+            return temp;
+            
 
+            }catch(Exception ex){
+
+                return null;
+
+            }
+           
+           
+                
+            
 
         }
 
@@ -98,29 +102,41 @@ namespace Platform.Modeler.DAO
         {
             LinkedList<String> temp = new LinkedList<string>();
             //var consulta = from x in db.alquiler where x.codigo == codigo select x;
-
-            var consulta = db.alquiler.Where(p => p.codigo == codigo);
-
-            consulta.First();
-
-            foreach (alquiler estu in consulta)
+            try
             {
-                temp.AddLast(estu.id.ToString());
-                temp.AddLast(estu.codigo);
-                temp.AddLast(estu.usuario_id.ToString());
-                temp.AddLast(estu.vehiculo_id.ToString());
-                temp.AddLast(estu.fecha_alquiler.ToString());
 
+                var consulta = db.alquiler.Where(p => p.codigo == codigo);
+
+                consulta.First();
+
+                foreach (alquiler estu in consulta)
+                {
+                    temp.AddLast(estu.id.ToString());
+                    temp.AddLast(estu.codigo);
+                    temp.AddLast(estu.usuario_id.ToString());
+                    temp.AddLast(estu.vehiculo_id.ToString());
+                    temp.AddLast(estu.fecha_alquiler.ToString());
+
+                }
+
+                return temp;
+
+
+            }catch(Exception ex){
+
+                return null;
             }
-
-            return temp;
+            
         }
 
         public bool modificarNormal(int id, String codigo, int idUsuario, int idVehiculo, String fecha)
         {
             try
             {
-                var consulta = from x in db.alquiler where x.id == id select x;
+                //var consulta = from x in db.alquiler where x.id == id select x;
+
+                var consulta = db.alquiler.Where(p => p.id == id); 
+
                 consulta.First();
 
                 foreach (alquiler est in consulta)
@@ -143,7 +159,9 @@ namespace Platform.Modeler.DAO
         {
             try
             {
-                var consulta = from x in db.alquiler where x.id == id select x;
+                //var consulta = from x in db.alquiler where x.id == id select x;
+
+                var consulta = db.alquiler.Where(p => p.id == id);
 
                 foreach (alquiler est in consulta)
                 {
@@ -158,6 +176,38 @@ namespace Platform.Modeler.DAO
             {
                 return false;
             }
+        }
+
+
+        public LinkedList<alquiler> listarAlquiler()
+        {
+
+            var consulta = db.alquiler.Select(p => new { p.id, p.usuario_id ,p.vehiculo_id ,p.fecha_alquiler , p.codigo });
+
+            consulta.First();
+
+            LinkedList<alquiler> temp = new LinkedList<alquiler>();
+
+            foreach(var tp in consulta){
+
+                alquiler ac = new alquiler();
+
+                ac.id = tp.id;
+
+                ac.codigo = tp.codigo;
+
+                ac.fecha_alquiler = tp.fecha_alquiler;
+
+                ac.usuario_id = tp.usuario_id;
+
+                ac.vehiculo_id = tp.vehiculo_id;
+
+                temp.AddLast(ac);
+
+            }
+
+            return temp;
+
         }
       
     }

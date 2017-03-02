@@ -175,6 +175,7 @@ namespace Alquiler.Navegacion
                      if (clsUsu.guardar(doc, nombre, apellido, edad, idGenero, idTipoDoc, idCiudad))
                      {
                          MessageBox.Show("El Usuario se creo con correctamente");
+                         listarTabla();
                          limpiar();
                      }
                      else
@@ -313,11 +314,15 @@ namespace Alquiler.Navegacion
 
                     txtDocumento.Enabled = true;
 
+                    aux = 0;
+
+                    listarTabla();
+
                     limpiar();
                 }
                 else
                 {
-                    MessageBox.Show("Error al tratar de eliminar");
+                    MessageBox.Show("Error al tratar de eliminar, el usuario tiene relación con un alquiler");
                 }
 
 
@@ -359,6 +364,9 @@ namespace Alquiler.Navegacion
                     if (clsUsu.guardarNormal(doc, nombre, apellido, edad, idGenero, idTipoDoc, idCiudad))
                     {
                         MessageBox.Show("El Usuario se creo con correctamente");
+
+                        listarTabla();
+
                         limpiar();
                     }
                     else
@@ -482,11 +490,15 @@ namespace Alquiler.Navegacion
 
                     txtDocumento.Enabled = true;
 
+                    aux = 0;
+
+                    listarTabla();
+
                     limpiar();
                 }
                 else
                 {
-                    MessageBox.Show("Error al tratar de eliminar");
+                    MessageBox.Show("Error al tratar de eliminar, el usuario tiene alguna relacion con un alquiler");
                 }
 
 
@@ -504,6 +516,9 @@ namespace Alquiler.Navegacion
         {
 
            LinkedList<usuario> u =  clsUsu.listarUsuarios();
+
+           dgUsuario.Rows.Clear();
+
             foreach(usuario us in u){
                 Console.WriteLine(us.documento);
                 String nombre = clsTP.obtenerIdTipoDoc(us.tipo_documento_id);

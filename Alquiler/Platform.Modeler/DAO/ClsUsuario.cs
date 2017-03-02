@@ -194,7 +194,10 @@ namespace Platform.Modeler.DAO
         {
             try
             {
-                var consulta = from x in db.usuario where x.id == id select x;
+               // var consulta = from x in db.usuario where x.id == id select x;
+
+                var consulta = db.usuario.Where(p => p.id == id);
+
                 consulta.First();
 
                 foreach (usuario est in consulta)
@@ -220,7 +223,7 @@ namespace Platform.Modeler.DAO
         {
             try
             {
-                var consulta = from x in db.usuario where x.id == id select x;
+                var consulta = db.usuario.Where(p => p.id == id);
 
                 foreach (usuario est in consulta)
                 {
@@ -235,6 +238,24 @@ namespace Platform.Modeler.DAO
             {
                 return false;
             }
+        }
+
+        public String buscarUsuarioId(int id)
+        {
+
+            var consulta = db.usuario.Where(p => p.id == id);
+
+            consulta.First();
+
+            String nombre = "";
+
+            foreach (var estu in consulta)
+            {
+                nombre = estu.nombre;
+
+            }
+
+            return nombre;
         }
     }
 

@@ -23,6 +23,7 @@ namespace Platform.Modeler.DAO
             //var consulta = from x in db.genero select x;
 
             var consulta = db.genero.Select(p => new { p.id, p.nombre });
+
             consulta.First();
 
             foreach (var tp in consulta)

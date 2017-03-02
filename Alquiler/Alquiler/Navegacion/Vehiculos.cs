@@ -30,6 +30,7 @@ namespace Alquiler.Navegacion
             clsVehi = new ClsVehiculo();
             marca = new LinkedList<marca>();
             llenarComboMarca();
+            listarTabla();
         }
 
         private void cbMarca_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,39 +81,54 @@ namespace Alquiler.Navegacion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             String placa = txtPlaca.Text;
-
-            int puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
-
-            int valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
-
+                       
             String color = txtColor.Text;
 
             Int32 idMarca = (Int32) cbMarca.SelectedValue;
 
-            if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
-            {
-                MessageBox.Show("Complete la informacion por favor.");
-            }
-            else
+            int puestos = 0;
+
+            int valor = 0;
+
+            try
             {
 
-                bool res = clsVehi.guardarPro(placa, puestos, valor, color, idMarca);
+                puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
 
-                if (res)
+                valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
+
+                if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
                 {
-
-                    limpiarCampos();
-                    MessageBox.Show("Exito al guardar");
-
+                    MessageBox.Show("Complete la informacion por favor.");
                 }
                 else
                 {
 
-                    MessageBox.Show("El Vehiculo de placas no se pudo guardar");
+                    bool res = clsVehi.guardarPro(placa, puestos, valor, color, idMarca);
+
+                    if (res)
+                    {
+                        listarTabla();
+
+                        limpiarCampos();
+                        MessageBox.Show("Exito al guardar");
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("El Vehiculo de placas no se pudo guardar");
+
+                    }
 
                 }
 
+            }catch(Exception es){
+
+                MessageBox.Show("Por favor ingrese un dato numérico en los campos puestos o valor ");
+
             }
+                       
 
         }
 
@@ -135,37 +151,62 @@ namespace Alquiler.Navegacion
 
             String placa = txtPlaca.Text;
 
-            int puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
+            int puestos = 0;
 
-            int valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
+            int valor = 0;
 
             String color = txtColor.Text;
 
             Int32 idMarca = (Int32)cbMarca.SelectedValue;
 
-            if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
-            {
-                MessageBox.Show("Complete la informacion por favor.");
-            }
-            else
+
+            try
             {
 
-             bool res = clsVehi.modificarPro(aux, placa, puestos, valor, color, idMarca);
+                puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
 
-                if(res){
+                valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
 
-                    limpiarCampos();
-                    MessageBox.Show("El vehículo se modifico correctamente");
-
+                if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
+                {
+                    MessageBox.Show("Complete la informacion por favor.");
                 }
                 else
                 {
 
-                    MessageBox.Show("El vehículo NO se modifico correctamente");
+                    bool res = clsVehi.modificarPro(aux, placa, puestos, valor, color, idMarca);
+
+                    if (res)
+                    {
+                        btnGuardar.Enabled = true;
+
+                        txtPlaca.Enabled = true;
+
+                        aux = 0;
+
+                        limpiarCampos();
+
+                        MessageBox.Show("El vehículo se modifico correctamente");
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("El vehículo NO se modifico correctamente");
+
+                    }
 
                 }
 
             }
+            catch (Exception es)
+            {
+
+                MessageBox.Show("Por favor ingrese un dato numérico en los campos puestos o valor ");
+
+            }
+
+           
 
         }
 
@@ -211,6 +252,8 @@ namespace Alquiler.Navegacion
 
                     btnGuardar.Enabled = false;
 
+                    txtPlaca.Enabled = false;
+
                 }
                        
 
@@ -233,8 +276,15 @@ namespace Alquiler.Navegacion
 
                 if (clsVehi.eliminarPro(aux))
                 {
+                    btnGuardar.Enabled = true;
+
+                    txtPlaca.Enabled = true;
+
+                    aux = 0;
 
                     limpiarCampos();
+
+                    listarTabla();
 
                     MessageBox.Show("El Vehículo se elimino correctamente");
 
@@ -252,38 +302,54 @@ namespace Alquiler.Navegacion
 
         private void btnGuardarNormal_Click(object sender, EventArgs e)
         {
+            
             String placa = txtPlaca.Text;
-
-            int puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
-
-            int valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
 
             String color = txtColor.Text;
 
             Int32 idMarca = (Int32)cbMarca.SelectedValue;
 
-            if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
-            {
-                MessageBox.Show("Complete la informacion por favor.");
-            }
-            else
+            int puestos = 0;
+
+            int valor = 0;
+
+            try
             {
 
-                bool res = clsVehi.guardarNormal(placa, puestos,color, valor, idMarca);
+                puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
 
-                if (res)
+                valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
+
+                if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
                 {
-
-                    limpiarCampos();
-                    MessageBox.Show("Exito al guardar");
-
+                    MessageBox.Show("Complete la informacion por favor.");
                 }
                 else
                 {
 
-                    MessageBox.Show("El Vehiculo de placas no se pudo guardar");
+                    bool res = clsVehi.guardarNormal(placa, puestos, color, valor, idMarca);
+
+                    if (res)
+                    {
+                        listarTabla();
+                        limpiarCampos();
+                        MessageBox.Show("Exito al guardar");
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("El Vehiculo de placas no se pudo guardar");
+
+                    }
 
                 }
+
+            }
+            catch (Exception es)
+            {
+
+                MessageBox.Show("Por favor ingrese un dato numérico en los campos puestos o valor ");
 
             }
 
@@ -327,7 +393,9 @@ namespace Alquiler.Navegacion
 
                     txtValorDia.Text = temp.ElementAt(5);                   
 
-                    btnGuardar.Enabled = false;
+                    btnGuardarNormal.Enabled = false;
+
+                    txtPlaca.Enabled = false;
 
                 }
 
@@ -339,38 +407,58 @@ namespace Alquiler.Navegacion
         {
             String placa = txtPlaca.Text;
 
-            int puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
-
-            int valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
-
             String color = txtColor.Text;
 
             Int32 idMarca = (Int32)cbMarca.SelectedValue;
 
-            if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
-            {
-                MessageBox.Show("Complete la informacion por favor.");
-            }
-            else
+            int puestos = 0;
+
+            int valor = 0;
+
+            try
             {
 
-                bool res = clsVehi.modificarNormal(aux, placa, puestos,color, valor, idMarca);
+                puestos = Convert.ToInt32((txtPuestos.Text == "" ? 0 : Convert.ToInt32(txtPuestos.Text)));
 
-                if (res)
+                valor = Convert.ToInt32((txtValorDia.Text == "" ? 0 : Convert.ToInt32(txtValorDia.Text)));
+
+                if (placa == "" || txtPuestos.Text == "" || txtValorDia.Text == "" || color == "" || idMarca == 0)
                 {
-
-                    limpiarCampos();
-                    MessageBox.Show("El vehículo se modifico correctamente");
-
+                    MessageBox.Show("Complete la información por favor.");
                 }
                 else
                 {
 
-                    MessageBox.Show("El vehículo NO se modifico correctamente");
+                    bool res = clsVehi.modificarNormal(aux, placa, puestos, color, valor, idMarca);
+
+                    if (res)
+                    {
+                        btnGuardarNormal.Enabled = true;
+
+                        txtPlaca.Enabled = true;
+
+                        limpiarCampos();
+
+                        MessageBox.Show("Exito al Modificar");
+
+                    }
+                    else
+                    {
+
+                        MessageBox.Show("El Vehiculo de placas no se pudo Modificar");
+
+                    }
 
                 }
 
             }
+            catch (Exception es)
+            {
+
+                MessageBox.Show("Por favor ingrese un dato numérico en los campos puestos o valor ");
+
+            }
+
         }
 
         private void btnEliminarNormal_Click(object sender, EventArgs e)
@@ -387,8 +475,15 @@ namespace Alquiler.Navegacion
 
                 if (clsVehi.eliminarNormal(aux))
                 {
+                    btnGuardarNormal.Enabled = true;
+
+                    txtPlaca.Enabled = true;
+
+                    aux = 0;
 
                     limpiarCampos();
+
+                    listarTabla();
 
                     MessageBox.Show("El Vehículo se elimino correctamente");
 
@@ -396,9 +491,27 @@ namespace Alquiler.Navegacion
                 else
                 {
 
-                    MessageBox.Show("Ocurrio un error al eliminar el vehículo");
+                    MessageBox.Show("El vehículo esta relacionado con un alquiler, por favor verifique");
                 }
             }
+        }
+
+        public void listarTabla()
+        {
+
+            LinkedList<vehiculo> vu = clsVehi.listarVehiculo();
+            dgVehiculo.Rows.Clear();
+
+
+            foreach (vehiculo us in vu)
+            {
+
+                String marca = clsMarc.obtenerIdMarca(us.marca_id);
+                dgVehiculo.Rows.Add(us.placa, us.numero_puestos, us.color, us.valor_dia, marca);
+
+            }
+
+
         }
 
     }

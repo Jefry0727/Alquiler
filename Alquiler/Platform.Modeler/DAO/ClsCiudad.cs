@@ -47,7 +47,9 @@ namespace Platform.Modeler.DAO
         public int obtenerIdCiudad(String nombre)
         {
             var consu = db.ciudad_nombre(nombre).Single();
+
             return consu.id;
+
         }
     }
 }

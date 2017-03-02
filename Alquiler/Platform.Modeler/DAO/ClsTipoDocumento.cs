@@ -26,6 +26,7 @@ namespace Platform.Modeler.DAO
            // var consulta = from x in db.tipo_documento select x;
 
             var consulta = db.tipo_documento.Select(p => new { p.id, p.nombre });
+
             consulta.First();
 
             foreach (var tp in consulta)
@@ -47,6 +48,7 @@ namespace Platform.Modeler.DAO
         public String obtenerIdTipoDoc(int id)
         {
            // var consu = db.tipo_documentos_nombre(nombre).Single();   
+
             var consulta = db.tipo_documento.Where(p => p.id == id);
 
             consulta.First();

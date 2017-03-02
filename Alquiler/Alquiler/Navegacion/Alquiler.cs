@@ -34,6 +34,8 @@ namespace Alquiler.Navegacion
             llenarComboUsuario();
 
             llenarComboVehiculo();
+
+            listarTabla();
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -113,8 +115,13 @@ namespace Alquiler.Navegacion
 
                 if (res)
                 {
+
+                    listarTabla();
+
                     limpiarCampos();
+
                     MessageBox.Show("El alquiler se realizo correctamente");
+
                 }
                 else
                 {
@@ -145,17 +152,30 @@ namespace Alquiler.Navegacion
 
                 temp = clsAlqui.buscarPro(codigo);
 
-                aux = Convert.ToInt32(temp.ElementAt(0));
+                if (temp != null)
+                {
 
-                txtCodigo.Text = temp.ElementAt(1);
+                    aux = Convert.ToInt32(temp.ElementAt(0));
 
-                cbUsuario.SelectedValue = Convert.ToInt32(temp.ElementAt(2));
+                    txtCodigo.Text = temp.ElementAt(1);
 
-                cbVehiculo.SelectedValue = Convert.ToInt32(temp.ElementAt(3));
+                    cbUsuario.SelectedValue = Convert.ToInt32(temp.ElementAt(2));
 
-                dtpFecha.Text = temp.ElementAt(4);
+                    cbVehiculo.SelectedValue = Convert.ToInt32(temp.ElementAt(3));
 
-                btnGuardar.Enabled = false;
+                    dtpFecha.Text = temp.ElementAt(4);
+
+                    btnGuardar.Enabled = false;
+
+                    txtCodigo.Enabled = false;
+
+                }
+                else
+                {
+                    MessageBox.Show("Error no existe el alquiler");
+                }
+
+               
 
             }
 
@@ -185,7 +205,15 @@ namespace Alquiler.Navegacion
 
                 if (res)
                 {
+
+                    listarTabla();
+
                     limpiarCampos();
+
+                    btnGuardar.Enabled = true;
+
+                    txtCodigo.Enabled = true;
+
                     MessageBox.Show("El alquiler se modifico correctamente");
                 }
                 else
@@ -215,7 +243,15 @@ namespace Alquiler.Navegacion
                 if (res)
                 {
 
+                    aux = 0;
+
+                    listarTabla();
+
                     limpiarCampos();
+
+                    btnGuardar.Enabled = true;
+
+                    txtCodigo.Enabled = true;
 
                     MessageBox.Show("El Alquiler se elimino correctamente");
 
@@ -264,6 +300,9 @@ namespace Alquiler.Navegacion
 
                 if (res)
                 {
+
+                    listarTabla();
+
                     limpiarCampos();
                     MessageBox.Show("El alquiler se realizo correctamente");
                 }
@@ -294,17 +333,28 @@ namespace Alquiler.Navegacion
 
                 temp = clsAlqui.buscarNormal(codigo);
 
-                aux = Convert.ToInt32(temp.ElementAt(0));
+                if (temp != null)
+                {
 
-                txtCodigo.Text = temp.ElementAt(1);
+                    aux = Convert.ToInt32(temp.ElementAt(0));
 
-                cbUsuario.SelectedValue = Convert.ToInt32(temp.ElementAt(2));
+                    txtCodigo.Text = temp.ElementAt(1);
 
-                cbVehiculo.SelectedValue = Convert.ToInt32(temp.ElementAt(3));
+                    cbUsuario.SelectedValue = Convert.ToInt32(temp.ElementAt(2));
 
-                dtpFecha.Text = temp.ElementAt(4);
+                    cbVehiculo.SelectedValue = Convert.ToInt32(temp.ElementAt(3));
 
-                btnGuardar.Enabled = false;
+                    dtpFecha.Text = temp.ElementAt(4);
+
+                    btnGuardarNormal.Enabled = false;
+
+                    txtCodigo.Enabled = false;
+
+                }
+                else
+                {
+                    MessageBox.Show("Error no existe el alquiler");
+                }
 
             }
         }
@@ -332,7 +382,14 @@ namespace Alquiler.Navegacion
 
                 if (res)
                 {
+                    listarTabla();
+
                     limpiarCampos();
+
+                    btnGuardarNormal.Enabled = true;
+
+                    txtCodigo.Enabled = true;
+
                     MessageBox.Show("El alquiler se modifico correctamente");
                 }
                 else
@@ -359,7 +416,15 @@ namespace Alquiler.Navegacion
                 if (clsAlqui.eliminarNormal(aux))
                 {
 
+                    listarTabla();
+
+                    aux = 0;
+
                     limpiarCampos();
+
+                    btnGuardarNormal.Enabled = true;
+
+                    txtCodigo.Enabled = true;
 
                     MessageBox.Show("El Alquiler se elimino correctamente");
 
@@ -375,6 +440,28 @@ namespace Alquiler.Navegacion
 
         private void Alquiler_Load(object sender, EventArgs e)
         {
+
+        }
+
+        public void listarTabla()
+        {
+
+            LinkedList<alquiler> u = clsAlqui.listarAlquiler();
+
+            dgAlquiler.Rows.Clear();
+
+            foreach (alquiler us in u)
+            {
+                Console.WriteLine(us.codigo);
+
+                String nombre = clsUsu.buscarUsuarioId(us.usuario_id);
+
+                String placa = clsVehi.buscarVehiculoId(us.vehiculo_id);
+
+                dgAlquiler.Rows.Add(us.codigo, us.fecha_alquiler, nombre, placa);
+
+            }
+
 
         }
     }
