@@ -94,6 +94,8 @@ namespace Alquiler.Navegacion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
 
+
+
             String codigo = txtCodigo.Text;
 
             Int32 idUsuario = (Int32)cbUsuario.SelectedValue;

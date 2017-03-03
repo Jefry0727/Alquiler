@@ -47,6 +47,11 @@ namespace Alquiler.Navegacion
             llenarComboGeneros();
 
             listarTabla();
+
+            btnModificar.Enabled = false;
+            btnModificarNormal.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnEliminarNormal.Enabled = false;
         }
 
         private void Usuario_Load(object sender, EventArgs e)
@@ -163,10 +168,11 @@ namespace Alquiler.Navegacion
             {
                  edad = Convert.ToInt32(txtEdad.Text);
 
-                 if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == "")
+                 if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == ""
+                     || edad <= 0)
                  {
 
-                     MessageBox.Show("Por favor complete la información del formulario");
+                     MessageBox.Show("Por favor complete bien la información del formulario");
 
                  }
                  else
@@ -188,7 +194,7 @@ namespace Alquiler.Navegacion
 
             }catch(Exception ex){
 
-                MessageBox.Show("Por favor ingresar un dato numerico en el campo edad");
+                MessageBox.Show("Por favor ingresar un dato numerico entero en el campo edad");
 
             }
 
@@ -211,6 +217,13 @@ namespace Alquiler.Navegacion
                     btnGuardar.Enabled = false;
 
                     txtDocumento.Enabled = false;
+
+                    btnModificar.Enabled = true;
+                    btnModificarNormal.Enabled = true;
+                    btnEliminar.Enabled = true;
+                    btnEliminarNormal.Enabled = true;
+
+                    btnGuardarNormal.Enabled = false;
 
                     idUsuario = temp.ElementAt(0);
 
@@ -259,10 +272,11 @@ namespace Alquiler.Navegacion
             {
                 edad = Convert.ToInt32(txtEdad.Text);
 
-                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == "")
+                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == ""
+                    || edad <= 0)
                 {
 
-                    MessageBox.Show("Por favor complete la información del formulario");
+                    MessageBox.Show("Por favor complete bien la información del formulario");
 
                 }
                 else
@@ -273,6 +287,8 @@ namespace Alquiler.Navegacion
                         MessageBox.Show("El Usuario se modifico correctamente");
 
                         btnGuardar.Enabled = true;
+
+                        btnGuardarNormal.Enabled = true;
 
                         txtDocumento.Enabled = true;
 
@@ -289,7 +305,7 @@ namespace Alquiler.Navegacion
             catch (Exception ex)
             {
 
-                MessageBox.Show("Por favor ingresar un dato numerico en el campo edad");
+                MessageBox.Show("Por favor ingresar un dato numerico entero en el campo edad");
 
             }
 
@@ -311,6 +327,8 @@ namespace Alquiler.Navegacion
                     MessageBox.Show("El Usuario fue Eliminado con exito");
 
                     btnGuardar.Enabled = true;
+
+                    btnGuardarNormal.Enabled = true;
 
                     txtDocumento.Enabled = true;
 
@@ -352,10 +370,11 @@ namespace Alquiler.Navegacion
             {
                 edad = Convert.ToInt32(txtEdad.Text);
 
-                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == "")
+                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == ""
+                    || edad <= 0)
                 {
 
-                    MessageBox.Show("Por favor complete la información del formulario");
+                    MessageBox.Show("Por favor complete bien la información del formulario");
 
                 }
                 else
@@ -381,7 +400,7 @@ namespace Alquiler.Navegacion
             catch (Exception ex)
             {
 
-                MessageBox.Show("Por favor ingresar un dato numerico en el campo edad");
+                MessageBox.Show("Por favor ingresar un dato numerico entero en el campo edad");
 
             }
         }
@@ -402,7 +421,14 @@ namespace Alquiler.Navegacion
                 }
                 else
                 {
+                    btnGuardar.Enabled = false;
+
                     btnGuardarNormal.Enabled = false;
+
+                    btnModificar.Enabled = true;
+                    btnModificarNormal.Enabled = true;
+                    btnEliminar.Enabled = true;
+                    btnEliminarNormal.Enabled = true;
 
                     txtDocumento.Enabled = false;
 
@@ -437,10 +463,11 @@ namespace Alquiler.Navegacion
             {
                 edad = Convert.ToInt32(txtEdad.Text);
 
-                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == "")
+                if (idCiudad == 0 || idGenero == 0 || idTipoDoc == 0 || doc == "" || nombre == "" || apellido == ""
+                    || edad <= 0)
                 {
 
-                    MessageBox.Show("Por favor complete la información del formulario");
+                    MessageBox.Show("Por favor complete bien la información del formulario");
 
                 }
                 else
@@ -451,6 +478,8 @@ namespace Alquiler.Navegacion
                         MessageBox.Show("El Usuario se modifico correctamente");
 
                         btnGuardar.Enabled = true;
+
+                        btnGuardarNormal.Enabled = true;
 
                         txtDocumento.Enabled = true;
 
@@ -467,7 +496,7 @@ namespace Alquiler.Navegacion
             catch (Exception ex)
             {
 
-                MessageBox.Show("Por favor ingresar un dato numerico en el campo edad");
+                MessageBox.Show("Por favor ingresar un dato numerico entero en el campo edad");
 
             }
         }
@@ -487,6 +516,8 @@ namespace Alquiler.Navegacion
                     MessageBox.Show("El Usuario fue Eliminado con exito");
 
                     btnGuardarNormal.Enabled = true;
+
+                    btnGuardar.Enabled = true;
 
                     txtDocumento.Enabled = true;
 
@@ -527,6 +558,77 @@ namespace Alquiler.Navegacion
             }
             
 
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiarTotal();
+        }
+
+        public void limpiarTotal()
+        {
+            btnGuardar.Enabled = true;
+            btnGuardarNormal.Enabled = true;
+            btnBuscar.Enabled = true;
+            btnBuscarNormal.Enabled = true;
+            btnModificar.Enabled = false;
+            btnModificarNormal.Enabled = false;
+            btnEliminar.Enabled = false;
+            btnEliminarNormal.Enabled = false;
+            txtDocumento.Text = "";
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtEdad.Text = "";
+            cbCiudadNac.SelectedValue = 0;
+            cbGenero.SelectedValue = 0;
+            cbTipoDocumento.SelectedValue = 0;
+            txtDocumento.Enabled = true;
+            aux = 0;
+        }
+
+        private void txtDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsLetter(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten letras", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void txtEdad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
+            {
+                MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

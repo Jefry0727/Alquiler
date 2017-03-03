@@ -55,6 +55,7 @@
             this.btnEliminarNormal = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgVehiculo)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -118,6 +119,7 @@
             this.txtPuestos.Name = "txtPuestos";
             this.txtPuestos.Size = new System.Drawing.Size(131, 20);
             this.txtPuestos.TabIndex = 6;
+            this.txtPuestos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPuestos_KeyPress);
             // 
             // txtColor
             // 
@@ -125,6 +127,8 @@
             this.txtColor.Name = "txtColor";
             this.txtColor.Size = new System.Drawing.Size(131, 20);
             this.txtColor.TabIndex = 7;
+            this.txtColor.TextChanged += new System.EventHandler(this.txtColor_TextChanged);
+            this.txtColor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtColor_KeyPress);
             // 
             // txtValorDia
             // 
@@ -132,6 +136,8 @@
             this.txtValorDia.Name = "txtValorDia";
             this.txtValorDia.Size = new System.Drawing.Size(131, 20);
             this.txtValorDia.TabIndex = 8;
+            this.txtValorDia.TextChanged += new System.EventHandler(this.txtValorDia_TextChanged);
+            this.txtValorDia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValorDia_KeyPress);
             // 
             // cbMarca
             // 
@@ -297,11 +303,22 @@
             this.panel2.Size = new System.Drawing.Size(559, 160);
             this.panel2.TabIndex = 21;
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(332, 144);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 22;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // Vehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 401);
+            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEliminarNormal);
@@ -353,5 +370,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn marcas;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
