@@ -222,6 +222,8 @@ namespace Alquiler.Navegacion
                     btnModificarNormal.Enabled = true;
                     btnEliminar.Enabled = true;
                     btnEliminarNormal.Enabled = true;
+                    btnBuscar.Enabled = false;
+                    btnBuscarNormal.Enabled = false;
 
                     btnGuardarNormal.Enabled = false;
 
@@ -289,10 +291,19 @@ namespace Alquiler.Navegacion
                         btnGuardar.Enabled = true;
 
                         btnGuardarNormal.Enabled = true;
+                        
+                        
 
                         txtDocumento.Enabled = true;
 
                         limpiar();
+
+                        btnModificar.Enabled = false;
+                        btnModificarNormal.Enabled = false;
+                        btnEliminar.Enabled = false;
+                        btnEliminarNormal.Enabled = false;
+                        btnBuscar.Enabled = true;
+                        btnBuscarNormal.Enabled = true;
                     }
                     else
                     {
@@ -337,6 +348,12 @@ namespace Alquiler.Navegacion
                     listarTabla();
 
                     limpiar();
+                    btnModificar.Enabled = false;
+                    btnModificarNormal.Enabled = false;
+                    btnEliminar.Enabled = false;
+                    btnEliminarNormal.Enabled = false;
+                    btnBuscar.Enabled = true;
+                    btnBuscarNormal.Enabled = true;
                 }
                 else
                 {
@@ -429,7 +446,8 @@ namespace Alquiler.Navegacion
                     btnModificarNormal.Enabled = true;
                     btnEliminar.Enabled = true;
                     btnEliminarNormal.Enabled = true;
-
+                    btnBuscar.Enabled = false;
+                    btnBuscarNormal.Enabled = false;
                     txtDocumento.Enabled = false;
 
                     aux = Convert.ToInt32(temp.ElementAt(0));
@@ -484,6 +502,13 @@ namespace Alquiler.Navegacion
                         txtDocumento.Enabled = true;
 
                         limpiar();
+
+                        btnModificar.Enabled = false;
+                        btnModificarNormal.Enabled = false;
+                        btnEliminar.Enabled = false;
+                        btnEliminarNormal.Enabled = false;
+                        btnBuscar.Enabled = true;
+                        btnBuscarNormal.Enabled = true;
                     }
                     else
                     {
@@ -526,6 +551,12 @@ namespace Alquiler.Navegacion
                     listarTabla();
 
                     limpiar();
+                    btnModificar.Enabled = false;
+                    btnModificarNormal.Enabled = false;
+                    btnEliminar.Enabled = false;
+                    btnEliminarNormal.Enabled = false;
+                    btnBuscar.Enabled = true;
+                    btnBuscarNormal.Enabled = true;
                 }
                 else
                 {

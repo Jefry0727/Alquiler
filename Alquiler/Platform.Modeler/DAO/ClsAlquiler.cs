@@ -53,10 +53,6 @@ namespace Platform.Modeler.DAO
                 return null;
 
             }
-           
-           
-                
-            
 
         }
 
@@ -64,16 +60,13 @@ namespace Platform.Modeler.DAO
         {
             try
             {
-
+                Console.Write("Helloooooooooo " + id);
                 db.eliminaraAlquilerPro(id);
-                return true;
-
+                return true;                
             }
             catch (Exception e)
             {
-
                 return false;
-
             }
 
 

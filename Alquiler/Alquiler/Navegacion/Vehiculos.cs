@@ -202,6 +202,9 @@ namespace Alquiler.Navegacion
 
                     if (res)
                     {
+
+                        btnBuscar.Enabled = true;
+                        btnBuscarNormal.Enabled = true;
                         btnGuardar.Enabled = true;
 
                         btnGuardarNormal.Enabled = true;
@@ -268,6 +271,8 @@ namespace Alquiler.Navegacion
                     btnModificarNormal.Enabled = true;
                     btnEliminar.Enabled = true;
                     btnEliminarNormal.Enabled = true;
+                    btnBuscar.Enabled = false;
+                    btnBuscarNormal.Enabled = false;
 
                     aux = Convert.ToInt32(temp.ElementAt(0));
 
@@ -310,6 +315,9 @@ namespace Alquiler.Navegacion
 
                 if (clsVehi.eliminarPro(aux))
                 {
+
+                    btnBuscar.Enabled = true;
+                    btnBuscarNormal.Enabled = true;
                     btnGuardar.Enabled = true;
 
                     btnGuardarNormal.Enabled = true;
@@ -428,6 +436,8 @@ namespace Alquiler.Navegacion
                 }
                 else
                 {
+                    btnBuscar.Enabled = false;
+                    btnBuscarNormal.Enabled = false;
                     btnModificar.Enabled = true;
                     btnModificarNormal.Enabled = true;
                     btnEliminar.Enabled = true;
@@ -488,6 +498,9 @@ namespace Alquiler.Navegacion
 
                     if (res)
                     {
+
+                        btnBuscar.Enabled = true;
+                        btnBuscarNormal.Enabled = true;
                         btnGuardarNormal.Enabled = true;
 
                         btnGuardar.Enabled = true;
@@ -497,6 +510,9 @@ namespace Alquiler.Navegacion
                         limpiarCampos();
 
                         MessageBox.Show("Exito al Modificar");
+
+                        
+
 
                     }
                     else
@@ -532,6 +548,9 @@ namespace Alquiler.Navegacion
 
                 if (clsVehi.eliminarNormal(aux))
                 {
+
+                    btnBuscar.Enabled = true;
+                    btnBuscarNormal.Enabled = true;
                     btnGuardarNormal.Enabled = true;
 
                     btnGuardar.Enabled = true;
