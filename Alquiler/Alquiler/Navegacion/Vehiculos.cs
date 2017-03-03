@@ -374,7 +374,7 @@ namespace Alquiler.Navegacion
                 else
                 {
 
-                    bool res = clsVehi.guardarNormal(placa, puestos, valor, color, idMarca);
+                    bool res = clsVehi.guardarNormal(placa, puestos, color, valor, idMarca);
 
                     if (res)
                     {

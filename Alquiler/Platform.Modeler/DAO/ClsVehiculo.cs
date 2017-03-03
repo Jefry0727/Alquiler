@@ -265,10 +265,5 @@ namespace Platform.Modeler.DAO
             return placa;
         }
 
-
-        public bool guardarNormal(string placa, global::System.Windows.Forms.DataGridViewTextBoxColumn numeroPuestos, string color, global::System.Windows.Forms.DataGridViewTextBoxColumn valorDia, int idMarca)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
